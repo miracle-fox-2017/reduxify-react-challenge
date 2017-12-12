@@ -1,21 +1,17 @@
+import {Link} from 'react-router-dom';
 import React,{Component} from 'react';
+
+import Cover from './media/spacex.jpg';
 
 const style={
   title:{
     fontSize:'25px',
-    display:'block',
-    textAlign:'center'
+    textDecoration:'none'
   },
-  label:{
-    fontSize:'18px',
-    display:'block',
-    fontWeight:'bold',
-    textAlign:'center'
-  },
-  content:{
-    fontSize:'18px',
-    display:'block',
-    textAlign:'center'
+  image:{
+    width:'60%',
+    margin:'auto',
+    display:'block'
   }
 }
 
@@ -29,14 +25,11 @@ export default class Rocket extends Component {
   render(){
     return(
       <div className="panel panel-default">
-        <div className="panel-heading">
-          <span style={style.title}>{this.state.rocket.name}</span>
+        <div className="panel-heading" style={{textAlign:'center'}}>
+          <Link to={this.state.rocket.id} style={style.title}>{this.state.rocket.name}</Link>
         </div>
         <div className="panel-body">
-          <span style={style.label}>Description</span>
-          <span style={style.content}>$ {this.state.rocket.description}</span>
-          <span style={style.label}>Cost Per Launch</span>
-          <span style={style.content}>$ {this.state.rocket.cost_per_launch}</span>
+          <img src={Cover} style={style.image} alt="SpaceX"/>
         </div>
       </div>
     )

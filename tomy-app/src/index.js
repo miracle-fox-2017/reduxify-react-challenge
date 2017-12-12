@@ -1,6 +1,8 @@
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 import React,{Component} from 'react';
 import {render} from 'react-dom';
 import Rocket from './Rocket';
+import Detail from './Detail';
 
 const style={
   container:{
@@ -25,8 +27,21 @@ class Index extends Component {
   }
   render(){
     return(
+      <Router>
+        <div>
+          <Route exact path="/" render={props => <Home rockets={this.state.rockets}/>}/>
+          <Route path="/:id" render={props => <Detail {...props} rockets={this.state.rockets}/>}/>
+        </div>
+      </Router>
+    )
+  }
+}
+
+class Home extends Component {
+  render(){
+    return(
       <div className="container" style={style.container}>
-        {this.state.rockets.map((rocket,i) => {
+        {this.props.rockets.map((rocket,i) => {
           return <Rocket rocket={rocket} key={i}/>
         })}
       </div>
