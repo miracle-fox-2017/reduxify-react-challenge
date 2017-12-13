@@ -1,6 +1,8 @@
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import React,{Component} from 'react';
 import {render} from 'react-dom';
+import {setRockets} from './redux/actions/rocket';
+import store from './redux';
 import Rocket from './Rocket';
 import Detail from './Detail';
 
@@ -17,13 +19,19 @@ class Index extends Component {
     this.state={
       rockets:[]
     }
+    store.subscribe(() => {
+      this.setState({
+        rockets:store.getState().rocketReducer.rockets,
+        update:Math.random()
+      })
+    });
   }
   componentWillMount(){
     fetch('https://api.spacexdata.com/v2/rockets')
       .then(response => response.json())
-      .then(jsonData => this.setState({
-        rockets:jsonData
-      }));
+      .then(jsonData => {
+        store.dispatch(setRockets(jsonData));
+      })
   }
   render(){
     return(
