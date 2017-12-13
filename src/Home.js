@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Layout, Card } from 'antd';
+import store from './store'
 const { Content } = Layout;
 
 const gridStyle = {
@@ -16,7 +17,7 @@ class Home extends Component {
   constructor(){
     super()
     this.state = {
-      allPhotos: [],
+      allPhotos: store.getState().allPhotos,
       newData: {
         foto: '',
         avatarURL: ''
@@ -24,18 +25,18 @@ class Home extends Component {
     };
   }
   componentWillMount  = () => {
-    let getData = firebase.database().ref('muka')
-    let that  = this
-    getData.on('value', function(snapshot) {
-      let tampung = []
-      snapshot.forEach(function(childSnapshot) {
-        var childData = childSnapshot.val();
-        tampung.push(childData)
-      });
-      that.setState({
-        allPhotos: tampung
-      })       
-    })
+    // let getData = firebase.database().ref('muka')
+    // let that  = this
+    // getData.on('value', function(snapshot) {
+    //   let tampung = []
+    //   snapshot.forEach(function(childSnapshot) {
+    //     var childData = childSnapshot.val();
+    //     tampung.push(childData)
+    //   });
+    //   that.setState({
+    //     allPhotos: tampung
+    //   })       
+    // })
   }
   render() {
     return (
