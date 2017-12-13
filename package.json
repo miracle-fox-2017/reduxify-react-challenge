@@ -9,6 +9,7 @@
     "react-escape-html": "^1.0.5",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
     "striptags": "^3.1.1"
   },
   "scripts": {

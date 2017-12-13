@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import logo from './logo.svg';
 import './App.css';
-import IndexPage from './IndexPage'
-import SinglePage from './SinglePage'
-import FeaturedSinglePage from './FeaturedSinglePage'
+import IndexPage from './components/IndexPage'
+import SinglePage from './components/SinglePage'
+import FeaturedSinglePage from './components/FeaturedSinglePage'
 
 class App extends Component {
   constructor (props) {
