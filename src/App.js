@@ -11,8 +11,8 @@ import IndexPage from './components/IndexPage'
 import SinglePage from './components/SinglePage'
 import FeaturedSinglePage from './components/FeaturedSinglePage'
 import CategoriesPage from './components/CategoriesPage'
+import TagsPage from './components/TagsPage'
 
-import rootReducer from './reducers/'
 import store from './store'
 
 class App extends Component {
@@ -45,9 +45,9 @@ class App extends Component {
 
             <Route exact path="/" component={IndexPage} />
             <Route exact path="/post" render={() => (<IndexPage/>)} />
-            <Route path="/post/:postId" render={(props) => (<FeaturedSinglePage>
-              <SinglePage {...props} /></FeaturedSinglePage>)} />
+            <Route path="/post/:postId" render={(props) => (<SinglePage {...props} />)} />
             <Route exact path="/categories" render={() => (<CategoriesPage/>)}/>
+            <Route exact path="/tags" render={() => (<TagsPage />)} />
           </div>
         </Router>
       </Provider>
