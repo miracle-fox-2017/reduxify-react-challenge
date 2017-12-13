@@ -4,23 +4,8 @@ import './App.css';
 import NewsList from './NewsList'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import { createStore } from 'redux'
-
-
-function rootReducer(state = [], action) {
-  switch (action.type) {
-    case 'getArticle':
-      return [
-        ...state,
-        action.news
-      ]
-    default:
-      return state
-  }
-}
-let store = createStore(rootReducer)
-
-
+import store from './store'
+import {getNews} from './store/action'
 
 class Home extends Component {
   constructor() {
@@ -29,10 +14,8 @@ class Home extends Component {
       news: []
     }
     store.subscribe(() => {
-      console.log('subscribe to store')
-      console.log(store.getState()[0])
       this.setState({
-        news: store.getState()[0]
+        news: store.getState().news
       })
     })
   }
@@ -43,11 +26,7 @@ class Home extends Component {
   getData() {
     axios.get('https://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=39338eeb41a348e5b1d8ce0fbe0906b7')
       .then((dataNews) => {
-        store.dispatch({ type: 'getArticle', news: dataNews.data.articles })
-        // console.log(dataNews)
-        // this.setState({
-        //   news: dataNews.data.articles
-        // })
+        store.dispatch(getNews(dataNews.data.articles))
       })
       .catch((reason) => {
         console.log(reason)
