@@ -1,7 +1,6 @@
 import React from 'react'
-// import store, { increment, decrement } from './Store'
-import store from './Store'
-import { increment, decrement } from './actions/counter'
+import store from '../Store'
+import { increment, decrement } from '../actions/counter'
 class Increment extends React.Component {
   constructor() {
     super()
@@ -18,7 +17,7 @@ class Increment extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="column is-pulled-left is-8">
         <h1 className="title is-1"> a counter: { this.state.counter } </h1>
         <a onClick={ () => store.dispatch(increment) } className="button is-primary">Increment</a>
         <a onClick={ () => store.dispatch(decrement) } className="button is-warning">Decrement</a>

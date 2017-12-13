@@ -5,12 +5,13 @@ import 'bulma/css/bulma.css';
 
 import store from './Store'
 import actions from './actions/getphoto'
-import TheNavBar from './TheNavBar'
-import TheSideBar from './TheSideBar'
-import TheRightSideBar from './TheRightSideBar'
-import Home from './Home'
-import ImageShow from './Flick';
-import Increment from './Increment'
+
+import TheNavBar from './components/TheNavBar'
+import TheSideBar from './components/TheSideBar'
+import TheRightSideBar from './components/TheRightSideBar'
+import Home from './components/Home'
+import ImageShow from './components/Flick';
+import Increment from './components/Increment'
 import './App.css';
 
 class App extends Component {
