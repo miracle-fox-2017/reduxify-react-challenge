@@ -21,7 +21,7 @@ class App extends Component {
                 <h1 className="App-title">Welcome to React</h1>
               </header>
               <Route exact path="/" component={Home} />
-              <Route exact path="/herofull/:moveSpeed" render={(props) => <HeroList {...props} /> } />
+              <Route exact path="/heromovespeed/:moveSpeed" render={(props) => <HeroList {...props} /> } />
               <Route path="/hero/:heroName" render={(props) => <HeroDetail {...props} /> } />
             </div>
           </Router>

@@ -32,10 +32,10 @@ class HeroFullDetail extends Component{
 	        tempHero.push(response.data[hero])
 	      }
 			const speed = this.props.match.params.moveSpeed
-			if(speed == "more"){
+			if(speed === "more"){
 				store.dispatch(getMoveSpeedMore(tempHero))
 			}
-			if(speed == "less"){
+			if(speed === "less"){
 				store.dispatch(getMoveSpeedLess(tempHero))
 			}	      
 	    })

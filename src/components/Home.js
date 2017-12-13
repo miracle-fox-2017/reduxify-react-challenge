@@ -41,8 +41,8 @@ class Home extends Component {
 		return(
 			<div>
 			<ul style={{overflow:"none"}}>
-				<li style={{textDecoration:"none", float:"left"}} > <Link to='/herofull/less'> Show Hero MS less then 300 with ReactRedux </Link> </li>
-				<li style={{textDecoration:"none", float:"right"}} > <Link to='/herofull/more'> Show Hero MS more then 300 with ReactRedux </Link> </li>
+				<li style={{textDecoration:"none", float:"left"}} > <Link to='/heromovespeed/less'> Show Hero MS less then 300 with ReactRedux </Link> </li>
+				<li style={{textDecoration:"none", float:"right"}} > <Link to='/heromovespeed/more'> Show Hero MS more then 300 with ReactRedux </Link> </li>
 			</ul>
 			<br/>
 		     	{ this.state.heroes.map(((hero,i) => {
