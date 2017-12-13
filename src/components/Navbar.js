@@ -11,9 +11,8 @@ export default class Navbar extends Component {
       keyword: ''
     }
     store.subscribe(() => {
-      console.log(store.getState().search.keyword)
       this.setState({
-        updater: Math.random()
+        keyword: store.getState().search.keyword
       })
     })
   }
