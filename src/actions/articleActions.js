@@ -1,4 +1,4 @@
-const getArticles = (articles) => {
+export const getArticles = (articles) => {
   return {
     type: 'GET_ARTICLES',
     payload: {

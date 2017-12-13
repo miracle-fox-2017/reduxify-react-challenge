@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ArticleItem from './ArticleItem'
 import axios from 'axios';
-import store, { getArticles } from '../store'
+import store from '../store'
+import { getArticles } from '../actions/articleActions'
 
 export default class IndexPage extends Component {
   constructor(props) {
