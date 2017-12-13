@@ -51,12 +51,19 @@ export default class IndexPage extends Component {
   }
 
   componentWillMount() {
-    const apiUrl = 'http://www.sfexaminer.com/wp-json/wp/v2/posts?_embed'
+    const apiUrl = 'https://wptavern.com/wp-json/wp/v2/posts?_embed'
 
     axios.get(apiUrl)
       .then(({ data }) => {
 
         store.dispatch(getArticles(data))
+        
+        /* store.dispatch({
+          type: 'GET_ARTICLES',
+          payload: {
+            articles: data
+          }
+        }) */
 
       }).catch(err => console.error({ message: 'Something wrong', error: err.message }));
   }
