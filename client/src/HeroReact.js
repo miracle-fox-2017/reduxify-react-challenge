@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link } from 'react-router-dom'
 
-class Hero extends React.Component {
+class HomeReactRedux extends React.Component {
   constructor () {
     super ()
   }
@@ -12,7 +12,7 @@ class Hero extends React.Component {
         <tr>
          <td>{this.props.hero.ID}</td>
          <td><Link to={{
-           pathname: `/details/${this.props.hero.Name}`,
+           pathname: `/HomeReactRedux/${this.props.hero.Name}`,
            state: {
              hero: this.props.hero
            }
@@ -41,4 +41,4 @@ class Hero extends React.Component {
   }
 }
 
-export default Hero
+export default HomeReactRedux

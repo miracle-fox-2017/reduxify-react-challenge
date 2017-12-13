@@ -31,6 +31,7 @@ class Navbar extends React.Component {
           <Route exact path="/" component={Home}/>
           <Route exact path="/HomeReactRedux" component={HomeReactRedux}/>
           <Route exact path="/details/:heroName" render={(props) => (<Dota heroes={this.props.hero} {...props}/> )}/>
+          <Route exact path="/HomeReactRedux/:heroName" render={(props) => (<Dota heroes={this.props.hero} {...props}/> )}/>
         </div>
       </nav>
       </div>

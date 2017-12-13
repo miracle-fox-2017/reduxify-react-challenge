@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom
 import { connect } from 'react-redux'
 import axios from 'axios'
 import store, { get_heroName } from './store'
-import Hero from './Hero'
+import HeroReact from './HeroReact'
 
 class HomeReactRedux extends Component {
   constructor (){
-    super()
+    super ()
     this.state = {
       hero: []
     }
@@ -58,7 +58,7 @@ class HomeReactRedux extends Component {
               </tr>
             </thead>
                {this.props.hero.map((d,i) => {
-                 return (<Hero hero={d} key={i}/>)
+                 return (<HeroReact hero={d} key={i}/>)
                })}
          </table>
         </div>
