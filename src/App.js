@@ -5,6 +5,8 @@ import Inputs from './components/Input'
 import './App.css';
 import firebase from 'firebase';
 import { Layout, Menu } from 'antd';
+import store from './store'
+import {Provider} from 'react-redux'
 
 const { Header, Content } = Layout;
 
@@ -30,31 +32,33 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-      <Layout className="layout">
-        <Header>
-          <div className="logo" label="MukaMu"/>
-          <Router>
-          <div>
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              style={{ lineHeight: '64px' }}
-            >
-              <Menu.Item><Link to="/">Home</Link></Menu.Item>
-              <Menu.Item><Link to="/input">Input</Link></Menu.Item>
-            </Menu>
-            <hr/>
-                <Route exact path="/" component={Home}/>
-                <Route path="/input" component={Inputs}/>
-              </div>
-          </Router>
-        </Header>
-        <Content style={{ padding: '0 50px' }}>
-          
-        </Content>
-      </Layout> 
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <Layout className="layout">
+            <Header>
+              <div className="logo" label="MukaMu"/>
+              <Router>
+                <div>
+                  <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    style={{ lineHeight: '64px' }}
+                  >
+                    <Menu.Item><Link to="/">Home</Link></Menu.Item>
+                    <Menu.Item><Link to="/input">Input</Link></Menu.Item>
+                  </Menu>
+                  <hr/>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/input" component={Inputs}/>
+                  </div>
+              </Router>
+            </Header>
+            <Content style={{ padding: '0 50px' }}>
+              
+            </Content>
+          </Layout> 
+        </div>
+      </Provider>
     );
   }
 }
