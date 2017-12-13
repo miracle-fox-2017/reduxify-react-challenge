@@ -13,6 +13,9 @@
   height: 35%;
   width: 35%;
 }
+.btn-info{
+  margin: 10px 0;
+}
 .App-header {
   background-color: #0A8D8D;
   height: 150px;

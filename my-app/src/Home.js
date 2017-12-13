@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
+import { Link } from 'react-router-dom'
 import NewsList from './NewsList'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import store from './store'
-import {getNews} from './store/action'
+import { getNews } from './actions/getNews'
 
 class Home extends Component {
   constructor() {
@@ -21,7 +22,6 @@ class Home extends Component {
   }
   componentWillMount() {
     this.getData()
-
   }
   getData() {
     axios.get('https://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=39338eeb41a348e5b1d8ce0fbe0906b7')
@@ -38,6 +38,11 @@ class Home extends Component {
       <div className="App">
         <Header />
         <div className="container">
+          <button className="btn btn-info">
+            <Link to="/news/headline">
+              Headline News
+            </Link>
+          </button>
           <div className="col-md-12">
             <div className="col-md-4">
               <div className="well">
