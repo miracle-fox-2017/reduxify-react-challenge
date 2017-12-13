@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import axios from 'axios';
 import 'bulma/css/bulma.css';
 
 import store from './Store'
@@ -24,13 +23,8 @@ class App extends Component {
   }
 
   getData() {
-    axios.get('https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=ff6f56a15e5597b81579f5b38613cbad&user_id=spacex&per_page=20&format=json&nojsoncallback=1')
-    .then(({ data })=>{
-      const newAactions = {...actions, payload: data.photos.photo }
-      store.dispatch(newAactions)
-    })
-    .catch(err=>{
-      console.log(err)
+    actions(cb => {
+      store.dispatch(cb)
     })
   }
 
