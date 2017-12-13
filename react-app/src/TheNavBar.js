@@ -19,7 +19,7 @@ const TheNavBar = (props) => (
       <div className="navbar-menu">
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
-          <Link className="navbar-item" to="/increment">Increment</Link>
+          <Link className="navbar-item" to="/increment">Counter</Link>
         </div>
 
       </div>

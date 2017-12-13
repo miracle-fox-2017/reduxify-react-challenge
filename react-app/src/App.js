@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'bulma/css/bulma.css';
 
@@ -6,6 +7,7 @@ import store from './Store'
 import actions from './actions/getphoto'
 import TheNavBar from './TheNavBar'
 import TheSideBar from './TheSideBar'
+import TheRightSideBar from './TheRightSideBar'
 import Home from './Home'
 import ImageShow from './Flick';
 import Increment from './Increment'
@@ -34,19 +36,22 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-        <Route path="/" component={TheNavBar} />
-          <div className="container head-fix">
-            <div className="columns">
-              <Route path="/" component={TheSideBar} />
-              <Route exact path="/" component={Home} />
-              <Route exact path="/increment" component={Increment} />
-              <Route path="/flick/:farmid/:serverid/:id/:secret" component={ImageShow} message="hehehe"/>
+      <Provider store={store}>
+        <Router>
+          <div>
+          <Route path="/" component={TheNavBar} />
+            <div className="container head-fix">
+              <div className="columns">
+                <Route path="/" component={TheSideBar} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={TheRightSideBar} />
+                <Route exact path="/increment" component={Increment} />
+                <Route path="/flick/:farmid/:serverid/:id/:secret" component={ImageShow} message="hehehe"/>
+              </div>
             </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }
