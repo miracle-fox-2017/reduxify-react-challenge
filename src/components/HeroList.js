@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import store from '../store'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getMoveSpeedMore } from '../actions/getHeroes'
 import { getMoveSpeedLess } from '../actions/getHeroes'
-const heroApi = `http://api.herostats.io/heroes/all`
 
 class HeroFullDetail extends Component{	
 	render() {
@@ -25,28 +23,17 @@ class HeroFullDetail extends Component{
 		)
 	}
 	componentWillMount() {
- 		axios.get(heroApi)
-	    .then(response => {
-	      let tempHero = []
-	      for (let hero in response.data){
-	        tempHero.push(response.data[hero])
-	      }
 			const speed = this.props.match.params.moveSpeed
 			if(speed === "more"){
-				store.dispatch(getMoveSpeedMore(tempHero))
+				store.dispatch(getMoveSpeedMore(this.props.heroes))
 			}
 			if(speed === "less"){
-				store.dispatch(getMoveSpeedLess(tempHero))
-			}	      
-	    })
-	    .catch(err => {
-	      console.log(err)
-	    })								
+				store.dispatch(getMoveSpeedLess(this.props.heroes))
+			}	      	    						
 	}	
 }
 
-
-function mapStateToProps(state) {
+function mapStateToProps(state) {	      	
 	return {
 		heroes: state.heroReducer.heroes
 	}	
