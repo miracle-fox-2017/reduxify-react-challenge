@@ -37,10 +37,10 @@ export default class SearchPage extends Component {
 
   render() {
     let content = ''
-    if(this.state.searchResult.length > 0 && this.state.loadingSearch == false) {
+    if(this.state.searchResult.length > 0 && this.state.loadingSearch === false) {
       content = <GameList gameList={this.state.searchResult} />      
     } else {
-      if(this.state.loadingSearch == false) {
+      if(this.state.loadingSearch === false) {
         content = <h1>Game not found...</h1>
       } else {
         content = <h1>Searching Game...</h1>        

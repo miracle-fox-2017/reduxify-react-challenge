@@ -45,7 +45,6 @@ export default class Navbar extends Component {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="control">
-              <i style={{'fontSize': '12px'}}>{store.getState().search.keyword}</i>
               <input className="input" type="text" placeholder="Find a Game" onChange={(e) => this.setKeyword(e)}/>
             </div>
             <Link to={url} className="control">
