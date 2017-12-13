@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import store, { add_team } from './store/index';
 
-class Team extends Component {
+class HomeReactRedux extends Component {
   constructor (){
     super()
 
@@ -15,11 +15,12 @@ class Team extends Component {
 
   render () {
     return (
-      
+      <div>
+      </div>
     )
   }
 
 }
 
 
-export default Team
+export default HomeReactRedux

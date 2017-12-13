@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 import Dota from './Dota'
 import Home from './Home'
-import Team from './Team'
+import HomeReactRedux from './Home-ReactRedux'
 
 class Navbar extends React.Component {
   constructor () {
@@ -25,11 +25,11 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul className="nav navbar-nav">
               <li className="active"><Link to="/">Home</Link></li>
-              <li className="active"><Link to="/team">Team</Link></li>
+              <li className="active"><Link to="/HomeReactRedux">HomeReactRedux</Link></li>
             </ul>
           </div>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/team" component={Team}/>
+          <Route exact path="/HomeReactRedux" component={HomeReactRedux}/>
           <Route exact path="/details/:heroName" render={(props) => (<Dota heroes={this.props.hero} {...props}/> )}/>
         </div>
       </nav>
