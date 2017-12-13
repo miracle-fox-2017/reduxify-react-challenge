@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Layout, Card } from 'antd';
 import store from './store'
+
+import { getPhotos, Photos } from './actions'
 const { Content } = Layout;
 
 const gridStyle = {
@@ -17,30 +19,38 @@ class Home extends Component {
   constructor(){
     super()
     this.state = {
-      allPhotos: store.getState().allPhotos,
+      allPhotos: [],
       newData: {
         foto: '',
         avatarURL: ''
       }
     };
+    store.subscribe(() => {
+      // console.log('INI STATE', store.getState())
+      this.setState({
+        allPhotos: store.getState().allPhotos
+      })
+    })
   }
+  
   componentWillMount  = () => {
-    // let getData = firebase.database().ref('muka')
-    // let that  = this
-    // getData.on('value', function(snapshot) {
-    //   let tampung = []
-    //   snapshot.forEach(function(childSnapshot) {
-    //     var childData = childSnapshot.val();
-    //     tampung.push(childData)
-    //   });
-    //   that.setState({
-    //     allPhotos: tampung
-    //   })       
-    // })
+    let getData = firebase.database().ref('muka')
+    getData.on('value', function(snapshot) {
+      let tampung = []
+      snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+        tampung.push(childData)
+      });
+      store.dispatch(Photos(tampung))   
+    })
+    
+    console.log()
+    
   }
   render() {
     return (
       <div>
+        {JSON.stringify(getPhotos)}
         <Content style={{ padding: '0 50px' }}>
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
             <h1>All Photos</h1>

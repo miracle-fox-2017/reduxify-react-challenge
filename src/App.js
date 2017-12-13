@@ -7,6 +7,8 @@ import firebase from 'firebase';
 import { Layout, Menu } from 'antd';
 const { Header, Content } = Layout;
 
+// import { someAction} from 'action'
+// onClick={ () => store.getState(). }
 class App extends Component {
   constructor(){
     super()

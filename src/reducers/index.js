@@ -1,17 +1,17 @@
-import {getPhotos} from "./actions";
 
-console.log(getPhotos)
+// console.log(getPhotos)
 
 const initialState = {
-  allPhotos: getPhotos
+  allPhotos: []
 }
-// export default (state=initialState, action) => {
-//   switch (action.type) {
-//     case '':
-      
-//       break;
+export default (state = initialState, action) => {
+  // console.log('KAPAN MASUK SINI', action)
+  switch (action.type) {
+    case 'ALL_PHOTOS':
+      state.allPhotos = action.dataPhotos
+      return {...state} 
   
-//     default:
-//       break;
-//   }
-// }
+    default:
+      break;
+  }
+}
