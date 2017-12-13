@@ -27,7 +27,7 @@ class App extends Component {
     fetch('https://api.spacexdata.com/v2/rockets')
       .then(response => response.json())
       .then(jsonData => {
-        store.dispatch(setRockets(jsonData));
+        this.props.setRockets(jsonData);
       })
   }
   componentWillReceiveProps(nextProps){
@@ -65,4 +65,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,null)(App);
+const mapDispatchToProps = (dispatch) => {
+  return{
+    setRockets : (payload) => dispatch(setRockets(payload))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
