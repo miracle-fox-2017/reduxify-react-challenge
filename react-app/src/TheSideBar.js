@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import reducer from './reducer'
+import store from './Store'
 
-console.log(reducer.photoStore.getState())
 const style = {
   overflowY: 'auto',
   height: '90vh',
@@ -14,12 +13,12 @@ class TheSideBar extends Component {
   constructor(props){
     super()
     this.state = {
-      flickr: reducer.photoStore.getState().flick
+      flickr: store.getState().PhotoReducer.flick
     }
 
-    reducer.photoStore.subscribe( () => {
+    store.subscribe( () => {
       this.setState({
-        flickr: reducer.photoStore.getState().flick
+        flickr: store.getState().PhotoReducer.flick
       })
     })
   }
