@@ -1,8 +1,14 @@
-import { combineReducers } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import CounterReducer from './counter'
 
 const rootReducer = combineReducers({
   CounterReducer
 })
 
-export default rootReducer
+const counterStore = createStore(CounterReducer)
+
+const reducer = {
+  counterStore
+}
+
+export default reducer

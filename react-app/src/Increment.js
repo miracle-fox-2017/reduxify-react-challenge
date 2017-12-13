@@ -1,15 +1,17 @@
 import React from 'react'
-import store, { increment, decrement } from './Store'
+// import store, { increment, decrement } from './Store'
+import reducer from './reducer'
+import { increment, decrement } from './actions/counter'
 
 class Increment extends React.Component {
   constructor() {
     super()
     this.state = {
-      counter: store.getState().counter
+      counter: reducer.counterStore.getState().counter
     }
-    store.subscribe( () => {
+    reducer.counterStore.subscribe( () => {
       this.setState({
-        counter: store.getState().counter
+        counter: reducer.counterStore.getState().counter
       })
     })
   }
@@ -19,8 +21,8 @@ class Increment extends React.Component {
     return (
       <div>
         <h1 className="title is-1"> a counter: { this.state.counter } </h1>
-        <a onClick={ () => store.dispatch(increment) } className="button is-primary">Increment</a>
-        <a onClick={ () => store.dispatch(decrement) } className="button is-warning">Decrement</a>
+        <a onClick={ () => reducer.counterStore.dispatch(increment) } className="button is-primary">Increment</a>
+        <a onClick={ () => reducer.counterStore.dispatch(decrement) } className="button is-warning">Decrement</a>
       </div>
     )
   }

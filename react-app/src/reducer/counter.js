@@ -13,4 +13,4 @@ const reducer = (state=initialState, action) => {
   }
 }
 
-export default store
+export default reducer
