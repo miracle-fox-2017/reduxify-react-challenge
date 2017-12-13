@@ -1,23 +1,14 @@
 import { createStore } from 'redux'
+import rootReducer from './reducers'
+import articleActions from './actions/articleActions'
 
 const store = createStore(
-  articleReducer,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
+
 const initialState = {
   articles: []
-}
-
-function articleReducer (state = initialState, action)  {
-  switch (action.type) {
-    case 'GET_ARTICLES':
-      const newArticles = state.articles.concat(action.payload.articles)
-
-      return { ...state, articles: newArticles}
-  
-    default:
-      return state
-  }
 }
 
 export const getArticles = (articles) => {
@@ -27,6 +18,8 @@ export const getArticles = (articles) => {
       articles
     }
   }
-}
+} 
+
+// export const getArticles = articleActions.getArticles
 
 export default store

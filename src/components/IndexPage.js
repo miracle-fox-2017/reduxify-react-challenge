@@ -13,9 +13,10 @@ export default class IndexPage extends Component {
 
     this.getSelectedPost = this.getSelectedPost.bind(this)
 
+    
     store.subscribe (() => {
       this.setState({
-        articles: store.getState().articles,
+        articles: store.getState().articleReducer.articles,
       })
     })
   }
@@ -24,7 +25,7 @@ export default class IndexPage extends Component {
     this.state.articles.splice(index, 1)
 
     this.setState({
-      articles: this.state.articles
+      articles: this.state.articleReducer.articles
     })
   }
 
@@ -53,9 +54,7 @@ export default class IndexPage extends Component {
 
     axios.get(apiUrl)
       .then(({ data }) => {
-        /* this.setState({
-          articles: data
-        }) */
+
         store.dispatch(getArticles(data))
 
       }).catch(err => console.error({ message: 'Something wrong', error: err.message }));

@@ -67,7 +67,7 @@ export default class ArticleItem extends Component {
 
         <div dangerouslySetInnerHTML={{ __html: this.props.article.excerpt.rendered }}></div>
         <br/>
-        <button style={archiveButtonStyle} onClick={this.doGetSelectedPost.bind(this, this.props.article, this.props.index)}>Archive It</button>
+        {/* <button style={archiveButtonStyle} onClick={this.doGetSelectedPost.bind(this, this.props.article, this.props.index)}>Archive It</button> */}
       </div>
     )
   }
