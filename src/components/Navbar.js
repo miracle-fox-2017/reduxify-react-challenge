@@ -11,6 +11,7 @@ export default class Navbar extends Component {
       keyword: ''
     }
     store.subscribe(() => {
+      // console.log(store.getState().search.keyword)
       this.setState({
         keyword: store.getState().search.keyword
       })
@@ -44,7 +45,7 @@ export default class Navbar extends Component {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="control">
-              <i style={{'font-size': '12px'}}>{store.getState().search.keyword}</i>
+              <i style={{'fontSize': '12px'}}>{store.getState().search.keyword}</i>
               <input className="input" type="text" placeholder="Find a Game" onChange={(e) => this.setKeyword(e)}/>
             </div>
             <Link to={url} className="control">

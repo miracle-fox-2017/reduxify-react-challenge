@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import fastXmlParser from 'fast-xml-parser'
+import store from '../store'
+import { action_search_get } from '../actions/searchAction'
 
 import GameList from './GameList'
 
@@ -11,6 +13,13 @@ export default class SearchPage extends Component {
       loadingSearch: false,
       searchResult: []
     }
+
+    store.subscribe(() => {
+      this.setState({
+        loadingSearch: false,
+        searchResult: store.getState().search.searchResult || []
+      })
+    })
   }
 
   componentWillMount() {
@@ -22,10 +31,7 @@ export default class SearchPage extends Component {
     .then(({data}) => {
       let jsonObj = fastXmlParser.parse(data)
       let searchResult = jsonObj.response.results.game
-        this.setState({
-          loadingSearch: false,
-          searchResult: searchResult || []
-        })
+      store.dispatch(action_search_get(searchResult))
     })
   }
 
