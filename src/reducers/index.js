@@ -9,8 +9,10 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'ALL_PHOTOS':
       state.allPhotos = action.dataPhotos
-      return {...state} 
-  
+      return {...state}
+    case 'SAVE_PHOTO':
+      state.allPhotos.concat(action.newPhoto)
+      return {...state}
     default:
       break;
   }

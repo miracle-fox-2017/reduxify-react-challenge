@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Layout, Card } from 'antd';
-import store from './store'
+import store from '../store'
+import { Photos } from '../actions'
 
-import { getPhotos, Photos } from './actions'
 const { Content } = Layout;
-
 const gridStyle = {
   width: '25%',
   textAlign: 'center',
@@ -26,13 +25,11 @@ class Home extends Component {
       }
     };
     store.subscribe(() => {
-      // console.log('INI STATE', store.getState())
       this.setState({
         allPhotos: store.getState().allPhotos
       })
     })
   }
-  
   componentWillMount  = () => {
     let getData = firebase.database().ref('muka')
     getData.on('value', function(snapshot) {
@@ -42,15 +39,11 @@ class Home extends Component {
         tampung.push(childData)
       });
       store.dispatch(Photos(tampung))   
-    })
-    
-    console.log()
-    
+    })    
   }
   render() {
     return (
       <div>
-        {JSON.stringify(getPhotos)}
         <Content style={{ padding: '0 50px' }}>
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
             <h1>All Photos</h1>

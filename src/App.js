@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Home from './Home'
-import Inputs from './Input'
+import Home from './components/Home'
+import Inputs from './components/Input'
 import './App.css';
 import firebase from 'firebase';
 import { Layout, Menu } from 'antd';
+
 const { Header, Content } = Layout;
 
-// import { someAction} from 'action'
-// onClick={ () => store.getState(). }
 class App extends Component {
   constructor(){
     super()
