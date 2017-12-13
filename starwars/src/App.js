@@ -21,7 +21,7 @@ class App extends Component {
               <Route exact path="/" component={HomePage} />
               <Route path="/detail/:id" render={(props) => <CardDetail {...props} />} />
               <Route path="/planets" component={Planets} />
-              <Route path="/planets/detail/:id" render={(props) => <PlanetDetail {...props} />} />
+              <Route path="/planet/detail/:id" render={(props) => <PlanetDetail {...props} />} />
           </div>
         </Router>
       </Provider>

@@ -7,27 +7,24 @@ class PlanetDetail extends Component {
     super()
   }
 
-  componentWillMount() {
-    console.log('Dapat data propsnya gak? ', this.props.location)
-  }
-
   render() {
     return (
       <div className="card col-md-12">
-        <h3 className="card-header">JUDUL</h3>
+        <h3 className="card-header">{this.props.location.state.planet.name}</h3>
         <div className="card-body">
-          <h5 className="card-title">Birth Year</h5>
-          <h6 className="card-subtitle">{this.props.location.state.person.birth_year}</h6>
+          <h5 className="card-title">Population</h5>
+          <h6 className="card-subtitle">{this.props.location.state.planet.population} people</h6>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Gender: {this.props.location.state.person.gender}</li>
-          <li className="list-group-item">Height: {this.props.location.state.person.height} cms</li>
-          <li className="list-group-item">Weight: {this.props.location.state.person.mass} lbs</li>
-          <li className="list-group-item">Eye Color: {this.props.location.state.person.eye_color}</li>
-          <li className="list-group-item">Skin Color: {this.props.location.state.person.skin_color}</li>
+          <li className="list-group-item">Rotation Period: {this.props.location.state.planet.rotation_period} hours</li>
+          <li className="list-group-item">Orbital Period: {this.props.location.state.planet.orbital_period} days</li>
+          <li className="list-group-item">Climate: {this.props.location.state.planet.climate}</li>
+          <li className="list-group-item">Gravity: {this.props.location.state.planet.gravity}</li>
+          <li className="list-group-item">Terrain: {this.props.location.state.planet.terrain}</li>
+          <li className="list-group-item">Diameter {this.props.location.state.planet.diameter} m</li>
         </ul>
         <div className="card-footer text-muted">
-          <Link to="/">Back Home</Link>
+          <Link to="/planets">Back Home</Link>
         </div>
       </div>
     )

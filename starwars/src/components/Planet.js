@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
@@ -22,11 +23,21 @@ class OneHero extends Component {
   render() {
     return (
       <div className="card col-md-12">
-        <h3 className="card-header">DAFTAR PLANET</h3>
+        <h3 className="card-header">PLANETS OF STARWARS</h3>
         <div className="card-body">
           <ol>
           {this.props.allplanets.map((planet, id) => {
-            return <li key={id}>{planet.name}</li>
+            return <Link to={{pathname:`/planet/detail/${id}`, state:{planet:{
+              id: id,
+              name: planet.name,
+              rotation_period: planet.rotation_period,
+              orbital_period: planet.orbital_period,
+              diameter: planet.diameter,
+              climate: planet.climate,
+              gravity: planet.gravity,
+              terrain: planet.terrain,
+              population: planet.population
+            }}}}><li key={id}>{planet.name}</li></Link>
           })}
           </ol>
         </div>
