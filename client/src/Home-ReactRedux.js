@@ -29,7 +29,6 @@ class HomeReactRedux extends Component {
 
   render () {
     return (
-      <Router>
         <div>
           <h1>DOTA HERO WITH REACT-REDUX</h1>
           <table className="table" border="2px">
@@ -62,7 +61,6 @@ class HomeReactRedux extends Component {
                })}
          </table>
         </div>
-      </Router>
     )
   }
 }
