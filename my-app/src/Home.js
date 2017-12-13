@@ -10,7 +10,10 @@ import { createStore } from 'redux'
 function rootReducer(state = [], action) {
   switch (action.type) {
     case 'getArticle':
-      return state.concat([action.news]);
+      return [
+        ...state,
+        action.news
+      ]
     default:
       return state
   }
@@ -23,18 +26,19 @@ class Home extends Component {
   constructor() {
     super()
     this.state = {
-      news:[]
+      news: []
     }
     store.subscribe(() => {
       console.log('subscribe to store')
-      console.log(store.getState())
+      console.log(store.getState()[0])
+      this.setState({
+        news: store.getState()[0]
+      })
     })
   }
   componentWillMount() {
     this.getData()
-    this.setState({
-      news: store.getState()
-    })
+
   }
   getData() {
     axios.get('https://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=39338eeb41a348e5b1d8ce0fbe0906b7')
