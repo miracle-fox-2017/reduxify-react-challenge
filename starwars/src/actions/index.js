@@ -5,9 +5,12 @@ export const allHeroes = (heroes) => {
   } 
 }
 
-export const oneHero = (hero) => {
+export const allPlanets = (planets) => {
+  console.log('======DI ACTIONS===========================');
+  console.log(planets);
+  console.log('====================================');
   return {
-    type: 'GET_ONE_HERO',
-    payload: hero
+    type: 'GET_ALL_PLANETS',
+    payload: planets
   }
 }

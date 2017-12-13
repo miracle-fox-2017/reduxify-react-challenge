@@ -4,7 +4,6 @@ import axios from 'axios'
 import store from '../store'
 import {allHeroes} from '../actions'
 
-import logo from '../starwarslogo.png';
 import CardPerson from './CardPerson';
 
 const swapi = axios.create({
@@ -15,15 +14,14 @@ class HomePage extends Component {
   constructor() {
     super()
     this.state = {
-      people: [],
-      planets: []
+      people: []
     }
     store.subscribe(() => {
       console.log('=============TANDA DARI HOMEPAGE=================');
       console.log(store.getState())
       console.log('====================================');
       this.setState({
-        people: store.getState().heroReducer
+        people: store.getState().heroReducer.people
       })
     })
   }
@@ -34,29 +32,15 @@ class HomePage extends Component {
         store.dispatch(allHeroes(data.results))
       })
       .catch(err => console.error(err))
-    swapi.get('/planets')
-    .then(({ data }) => {
-      this.setState({
-        planets: data.results
-      }, () => {
-        console.log('Daftar planet sekarang ', this.state.planets)
-      })
-    })
-    .catch(err => console.error(err))
   }
 
   render () {
       return (
-        <div>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
         <div className="row">
           {this.state.people.map((data, index) => {
-              return <CardPerson key={index} person={data} index={index} planets={this.state.planets}> </ CardPerson>
+              return <CardPerson key={index} person={data} index={index}> </ CardPerson>
           })
         }
-        </div>
         </div>
       )
   }
