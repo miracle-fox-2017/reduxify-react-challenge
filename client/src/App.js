@@ -6,6 +6,8 @@ import Dota from './Dota'
 import Home from './Home'
 import axios from 'axios'
 import Navbar from './Navbar'
+import { Provider } from 'react-redux'
+import store from './store'
 class App extends Component {
 
   constructor () {
@@ -17,11 +19,13 @@ class App extends Component {
 
   render() {
     return (
+    <Provider store={store}>
     <Router>
     <div className="App">
       <Navbar heroes={this.state.hero}/>
     </div>
   </Router>
+  </Provider>
   )}}
 
 export default App;

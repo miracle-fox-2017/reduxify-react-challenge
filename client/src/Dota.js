@@ -4,7 +4,6 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Home from './Home'
 
 const style = {
   backgroundImage: "url('https://lh6.ggpht.com/iByYk3ChZ3bdgNIhNi8hdrr9t0THKBJXQyrtLr0ZJ_NHU3i5MuAW43gdUv5GL1b5j5V_=h900')"

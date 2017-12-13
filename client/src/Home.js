@@ -5,18 +5,18 @@ import axios from 'axios'
 import store, { get_heroName } from './store/index'
 import { connect } from 'react-redux'
 
-
 class Home extends React.Component {
   constructor () {
     super ()
     this.state = {
       hero: []
     }
-  store.subscribe(() => {
-    this.setState({
-      hero: store.getState().Dota.hero
+
+    store.subscribe(() => {
+      this.setState({
+        hero: store.getState().Dota.hero
+      })
     })
-  })
   }
 
   componentWillMount() {
@@ -38,7 +38,7 @@ class Home extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="table-responsive" >
-          <h1>TABLE HERO DOTA</h1>
+          <h1>DOTA HERO WITH REDUX</h1>
            <table className="table" border="2px">
              <thead>
                <tr>
