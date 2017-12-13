@@ -3,6 +3,7 @@ import store from '../store'
 import Hero from './Hero'	
 import axios from 'axios'
 import { getHeroes } from '../actions/getHeroes'
+import { Link } from 'react-router-dom'
 const heroApi = `http://api.herostats.io/heroes/all`
 
 class Home extends Component {
@@ -39,6 +40,11 @@ class Home extends Component {
 	render() {
 		return(
 			<div>
+			<ul style={{overflow:"none"}}>
+				<li style={{textDecoration:"none", float:"left"}} > <Link to='/herofull/less'> Show Hero MS less then 300 with ReactRedux </Link> </li>
+				<li style={{textDecoration:"none", float:"right"}} > <Link to='/herofull/more'> Show Hero MS more then 300 with ReactRedux </Link> </li>
+			</ul>
+			<br/>
 		     	{ this.state.heroes.map(((hero,i) => {
 			        return (
 			          <Hero heroList={hero} key={i}/>

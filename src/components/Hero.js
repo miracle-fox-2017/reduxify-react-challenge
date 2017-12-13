@@ -9,7 +9,7 @@ class Hero extends Component {
 				</h4>
 				{/*<button> <Link to={this.props.heroList.Name}> Show Detail </Link> </button>	 */}
 				<button> <Link to={ {
-					pathname: this.props.heroList.Name,
+					pathname: `/hero/${this.props.heroList.Name}`,
 					state: {
 						hero: {
 							Name : this.props.heroList.Name,
@@ -18,7 +18,7 @@ class Hero extends Component {
 							Mana : this.props.heroList.Mana
 						}
 					}
-				}}> Show Detail </Link> </button>	 
+				}}> Show Hp and Mana Redux</Link> </button>	 
 			</div>
 		)
 	}
