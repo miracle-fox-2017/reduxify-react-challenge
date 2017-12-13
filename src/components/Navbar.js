@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import store, {action_search} from '../store.js'
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -8,12 +9,12 @@ export default class Navbar extends Component {
       loadingSearch: false,
       keyword: ''
     }
+    store.subscribe(console.log(store.getState()))
   }
+  
 
   setKeyword(event) {
-    this.setState({
-      keyword: event.target.value
-    })
+    store.dispatch(action_search)
   }
 
   render() {
@@ -39,7 +40,7 @@ export default class Navbar extends Component {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="control">
-              <input className="input" type="text" placeholder="Find a Game" onChange={(e) => this.setKeyword(e)}/>
+            {store.getState.keyword}<input className="input" type="text" placeholder="Find a Game" onChange={(e) => this.setKeyword(e)}/>
             </div>
             <Link to={url} className="control">
               {buttonSearch}
