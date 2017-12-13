@@ -3,9 +3,12 @@ var initialState = {
 }
 
 function reducer(state = initialState, action) {
-  if(action.type === 'GET_ARTICLES') {
+  switch (action.type) {
+    case "GET_ARTICLES":
     state.articles = action.articles
-    return state.articles
+    return {...state}
+    default:
+      return state
   }
 }
 

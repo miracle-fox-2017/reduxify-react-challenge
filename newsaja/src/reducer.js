@@ -5,7 +5,7 @@ var initialState = {
 function reducer(state = initialState, action) {
   if(action.type === 'GET_ARTICLES') {
     state.articles = action.articles
-    return state.articles
+    return {...state, articles: action.articles }
   }
 }
 
