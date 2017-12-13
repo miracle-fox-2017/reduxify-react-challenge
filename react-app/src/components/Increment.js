@@ -1,29 +1,36 @@
 import React from 'react'
-import store from '../Store'
+import { connect } from 'react-redux'
 import { increment, decrement } from '../actions/counter'
-class Increment extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      counter: store.getState().CounterReducer.counter
-    }
-    store.subscribe( () => {
-      this.setState({
-        counter: store.getState().CounterReducer.counter
-      })
-    })
-  }
 
+class Increment extends React.Component {
+  constructor(props) {
+    super()
+  }
 
   render(){
     return (
       <div className="column is-pulled-left is-8">
-        <h1 className="title is-1"> a counter: { this.state.counter } </h1>
-        <a onClick={ () => store.dispatch(increment) } className="button is-primary">Increment</a>
-        <a onClick={ () => store.dispatch(decrement) } className="button is-warning">Decrement</a>
+        <h1 className="title is-1"> a counter: { this.props.counter } </h1>
+        <a onClick={ () => this.props.inc() } className="button is-primary">Increment</a>
+        <a onClick={ () => this.props.dcr() } className="button is-warning">Decrement</a>
       </div>
     )
   }
+
 }
 
-export default Increment
+const mapStateToProps = (state) => {
+  return {
+    counter: state.CounterReducer.counter
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    inc: () => dispatch(increment),
+    dcr: () => dispatch(decrement)
+  }
+}
+
+const connectedIncrement = connect(mapStateToProps, mapDispatchToProps)(Increment)
+export default connectedIncrement
