@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ArticleItem from './ArticleItem'
 import axios from 'axios';
+import store, { getArticles } from '../store'
 
 export default class IndexPage extends Component {
   constructor(props) {
@@ -11,6 +12,12 @@ export default class IndexPage extends Component {
     }
 
     this.getSelectedPost = this.getSelectedPost.bind(this)
+
+    store.subscribe (() => {
+      this.setState({
+        articles: store.getState().articles,
+      })
+    })
   }
 
   getSelectedPost(post, index) {
@@ -46,9 +53,10 @@ export default class IndexPage extends Component {
 
     axios.get(apiUrl)
       .then(({ data }) => {
-        this.setState({
+        /* this.setState({
           articles: data
-        })
+        }) */
+        store.dispatch(getArticles(data))
 
       }).catch(err => console.error({ message: 'Something wrong', error: err.message }));
   }
