@@ -31,7 +31,7 @@ class TheRightSideBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    photo: state.PhotoReducer.flick
+    photo: state.PhotoReducer.rightFlick
   }
 }
 

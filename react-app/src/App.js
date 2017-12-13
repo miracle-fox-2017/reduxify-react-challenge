@@ -25,7 +25,10 @@ class App extends Component {
   }
 
   getData() {
-    actions(cb => {
+    actions.getphotos(cb => {
+      store.dispatch(cb)
+    })
+    actions.getRightPhotos(cb => {
       store.dispatch(cb)
     })
   }
@@ -44,9 +47,9 @@ class App extends Component {
               <div className="columns">
                 <Route path="/" component={TheSideBar} />
                 <Route exact path="/" component={Home} />
-                <Route exact path="/" component={TheRightSideBar} />
                 <Route exact path="/increment" component={Increment} />
                 <Route path="/flick/:farmid/:serverid/:id/:secret" component={ImageShow} message="hehehe"/>
+                <Route path="/" component={TheRightSideBar} />
               </div>
             </div>
           </div>
