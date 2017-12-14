@@ -50,7 +50,7 @@ class App extends Component {
                 <Route exact path="/collections" render={() => {
                   if (this.state.collectionId === '') {
                     return (
-                      <MainList sendCollectionsData={this.getCollectionList}/>
+                      <MainList sendCollectionsData={this.getCollectionList} sendLat={this.state.lat} sendLon={this.state.lon}/>
                     )
                   } else {
                     return (

@@ -11,7 +11,18 @@ class ListItem extends Component {
     }
   }
   componentWillMount = () => {
-    this.props.listItemRequest(this.props.listItem, this.props.sendCollectionId)
+    const setLoc = this
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    function showPosition(position) {
+      console.log('masuk setloc',setLoc)
+      setLoc.setState({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      })
+      setLoc.props.listItemRequest(setLoc.props.listItem, setLoc.props.sendCollectionId, setLoc.state.lat, setLoc.state.lon)
+    }
   }
   render () {
     let imgStyle = {
@@ -53,7 +64,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch => {
   return {
-    listItemRequest: (listItem, collectionId) => dispatch(listItemAction.listItemRequest(listItem, collectionId))
+    listItemRequest: (listItem, collectionId, lat, lon) => dispatch(listItemAction.listItemRequest(listItem, collectionId, lat, lon))
   }
 })
 

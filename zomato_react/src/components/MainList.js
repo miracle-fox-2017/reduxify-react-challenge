@@ -3,11 +3,19 @@ import { connect } from 'react-redux'
 import * as collectionsAction from '../actions/collectionsAction'
 
 class MainList extends Component {
-  constructor (props) {
-    super (props)
-  }
   componentWillMount = () => {
-    this.props.collectionsRequest()
+    const setLoc = this
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    function showPosition(position) {
+      console.log('masuk setloc',setLoc)
+      setLoc.setState({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      })
+      setLoc.props.collectionsRequest(setLoc.props.collections, setLoc.state.lat, setLoc.state.lon)
+    }
   }
   sendCollectionId = (collectionId) => {
     this.props.sendCollectionsData(collectionId)
@@ -60,7 +68,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    collectionsRequest: collections => dispatch(collectionsAction.collectionsRequest(collections))
+    collectionsRequest: (collections, lat, lon) => dispatch(collectionsAction.collectionsRequest(collections, lat, lon))
   }
 }
 

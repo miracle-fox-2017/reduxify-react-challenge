@@ -7,14 +7,14 @@ export function getAllListItem (newListItem) {
   }
 }
 
-export function listItemRequest (newListItem, collectionId) {
+export function listItemRequest (newListItem, collectionId, lat, lon) {
   return dispatch => {
     dispatch(getAllListItem(newListItem))
     return (
       Axios.get('https://developers.zomato.com/api/v2.1/search', {
         params: {
-          'lat': '-6.259926',
-          'lon': '106.781565',
+          'lat': lat,
+          'lon': lon,
           'collection_id': collectionId
         },
         headers: {
