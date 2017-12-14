@@ -6,10 +6,7 @@ export default class GameList extends Component {
     return(
       <div>
         {this.props.gameList.map((g, i) => {
-          return <div>
-            <GameItem key={i} gameItem={g}/>
-            <br/>
-          </div>
+          return <GameItem key={i} gameItem={g}/>
         })}
       </div>
     )

@@ -50,6 +50,7 @@ export default class GameItem extends Component {
             <Link to={url} className="button is-info">Read More</Link>
           </div>
         </div>
+        <hr/>
       </div>
     )
   }

@@ -1,4 +1,6 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
+
 import search from './reducers/searchReducer'
 import mainPage from './reducers/mainReducer'
 import gameDetail from './reducers/gameDetailReducer'
@@ -9,6 +11,8 @@ let appReducers = combineReducers({
   gameDetail
 })
 
-const store = createStore(appReducers)
+const middleware = applyMiddleware(logger)
+
+const store = createStore(appReducers, middleware)
 
 export default store
