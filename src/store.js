@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
@@ -12,8 +12,10 @@ let appReducers = combineReducers({
   gameDetail
 })
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const middleware = applyMiddleware(logger, thunk)
 
-const store = createStore(appReducers, middleware)
+const store = createStore(appReducers, composeEnhancers(middleware))
 
 export default store
