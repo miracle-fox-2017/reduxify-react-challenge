@@ -18,7 +18,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Home} />
-          <Route path="/:url" render={(props) => <NewsDetail {...props} />}/>
+          <Route path="/:url" render={(props) =>
+            <NewsDetail {...props} />
+          }/>
         </div>
       </Router>
       </Provider>

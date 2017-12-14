@@ -19,7 +19,11 @@ class Home extends Component {
       <div>
 		     	{ this.props.articles.map(((article,index) => {
 			        return (
-			          <Newslist article={article} key={index}/>
+                <div className="container">
+                  <div className="card text-white bg-success mb-3" style={{maxWidth: 50+ "rem"}}>
+                    <Newslist article={article} key={index}/>
+                  </div>
+                </div>
 			        )
 		    	  }))
 		     	}
@@ -34,7 +38,6 @@ const mapStateToProps = (state) => {
     articles: state.articles
   }
 }
-
 
 const connectedHome = connect(mapStateToProps, {fetchArticles})(Home)
 export default connectedHome
