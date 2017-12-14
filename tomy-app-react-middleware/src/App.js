@@ -2,8 +2,7 @@ import {BrowserRouter as Router,Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import React,{Component} from 'react';
 
-import {setRockets} from './redux/actions/rocket';
-import store from './redux';
+import {fetchApi} from './redux/actions/rocket';
 
 // Components
 import Rocket from './Rocket';
@@ -24,11 +23,7 @@ class App extends Component {
     }
   }
   componentWillMount(){
-    fetch('https://api.spacexdata.com/v2/rockets')
-      .then(response => response.json())
-      .then(jsonData => {
-        this.props.setRockets(jsonData);
-      })
+    this.props.fetchApi();
   }
   componentWillReceiveProps(nextProps){
     this.setState({
@@ -36,7 +31,6 @@ class App extends Component {
     });
   }
   render(){
-    console.log(this.props.rockets);
     return(
       <Router>
         <div>
@@ -68,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    setRockets : (payload) => dispatch(setRockets(payload))
+    fetchApi : () => dispatch(fetchApi())
   }
 }
 
