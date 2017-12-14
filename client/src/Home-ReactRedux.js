@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import store, { get_heroName } from './store'
+import { get_heroName, fetchdotaAPI } from './action/api'
+
 import HeroReact from './HeroReact'
 
 class HomeReactRedux extends Component {
@@ -12,19 +13,8 @@ class HomeReactRedux extends Component {
       hero: []
     }
   }
-
   componentWillMount() {
-    axios.get('http://api.herostats.io/heroes/all')
-    .then(response => {
-      let tampung = []
-      for (var index in response.data) {
-        tampung.push(response.data[index])
-      }
-      this.props.get_heroName(tampung)
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    this.props.fetchdotaAPI()
   }
 
   render () {
@@ -67,7 +57,7 @@ class HomeReactRedux extends Component {
 
 const mapAction = (dispatch) => {
   return {
-    get_heroName : (payload) => dispatch(get_heroName(payload))
+    fetchdotaAPI: (payload) => dispatch(fetchdotaAPI(payload))
   }
 }
 
