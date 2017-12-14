@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchNewsAPI } from '../action/api'
 import NewsDetails from './NewsDetails'
+import logo from '../news.png';
 
 class News extends React.Component {
   constructor() {
@@ -18,7 +19,8 @@ componentWillMount () {
   render () {
     return (
       <div>
-      <h1>HEADLINE NEWS</h1>
+
+      <h1> HEADLINE <img src={logo} className="App-logo" alt="logo"/></h1>
         {this.props.news.map((d,i) => {
           return (<NewsDetails berita={d} key={i}/>)
         })}

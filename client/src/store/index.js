@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 const middleware = applyMiddleware (logger, thunk)
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+// MASIH METODE REDUX
 export function get_heroName(value) {
   return {
     type: 'GET_HERO',
