@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import store from '../store'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { addTags, fetchTagsAPI, fetchTagsData } from '../actions/tagActions'
+import { fetchTagsData } from '../actions/tagActions'
 
 class TagsPage extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       tags: []
     }
@@ -19,7 +18,15 @@ class TagsPage extends Component {
         <h2>All Tags</h2>
 
         {
-          this.state.tags.map((tag, index) => {
+          (this.props.isLoading) ? <h1>Loading...</h1> : ''
+        }
+
+        {
+          (this.props.hasErrored) ? <h1>Error Loading Tags...</h1> : ''
+        }
+
+        {
+          this.props.tags.map((tag, index) => {
             return (
               <p key={index}><a href={tag.link}>{tag.name}</a></p>
             )
@@ -29,11 +36,11 @@ class TagsPage extends Component {
     )
   }
 
-  componentWillReceiveProps(nextProps) {
+ /*  componentWillReceiveProps(nextProps) {
     this.setState({
       tags : nextProps.tags
     })
-  }
+  } */
 
   componentDidMount() {
     const apiUrl = 'https://wptavern.com/wp-json/wp/v2/tags'
@@ -43,7 +50,9 @@ class TagsPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tags: state.tagReducer.tags
+    tags: state.tagReducer.tags,
+    hasErrored: state.tagReducerError,
+    isLoading: state.tagReducerLoading
   }
 }
 
