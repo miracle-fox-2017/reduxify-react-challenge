@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import store from '../store.js'
-import {action_search} from '../actions/searchAction'
+import {searchKeyword} from '../actions/searchAction'
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class Navbar extends Component {
   }
 
   setKeyword(event) {
-    store.dispatch(action_search(event.target.value))
+    store.dispatch(searchKeyword(event.target.value))
   }
 
   render() {

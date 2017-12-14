@@ -7,7 +7,7 @@ const search = (state = stateDefault, action) => {
   switch (action.type) {
     case 'SEARCH_KEYWORD': 
       return (Object.assign({}, state, {keyword: action.payload}))
-    case 'SEARCH_GET':
+    case 'SEARCH_RESULT':
       return (Object.assign({}, state, {searchResult: action.payload}))
     default :
       return state

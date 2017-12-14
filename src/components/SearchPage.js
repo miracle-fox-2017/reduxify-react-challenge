@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import axios from 'axios'
-import fastXmlParser from 'fast-xml-parser'
 import store from '../store'
-import { action_search_get } from '../actions/searchAction'
+import { searchGet } from '../actions/searchAction'
 
 import GameList from './GameList'
 
@@ -27,12 +25,15 @@ export default class SearchPage extends Component {
       loadingSearch: true
     })
     let keyword = this.props.match.params.keyword
-    axios.get('https://www.giantbomb.com/api/search/?api_key=81b142b95e0dc166df9f0ddc886621c0ec8a3254&query='+keyword+'&resources=game')
-    .then(({data}) => {
-      let jsonObj = fastXmlParser.parse(data)
-      let searchResult = jsonObj.response.results.game
-      store.dispatch(action_search_get(searchResult))
+    store.dispatch(searchGet(keyword))
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      loadingSearch: true
     })
+    let keyword = nextProps.match.params.keyword
+    store.dispatch(searchGet(keyword))
   }
 
   render() {
