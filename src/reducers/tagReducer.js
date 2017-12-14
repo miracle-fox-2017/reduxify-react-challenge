@@ -6,9 +6,9 @@ const initialState = {
 
 const tagReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_TAGS':
-      const newTags = state.tags.concat(action.payload.tags)
-      return { ...state, tags: newTags };
+    case 'FETCH_TAGS_SUCCESS' :
+      const tags = state.tags.concat(action.payload.tags)
+      return { ...state, tags: tags };
 
     default:
       return state;

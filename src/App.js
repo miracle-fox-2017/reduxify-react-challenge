@@ -38,7 +38,8 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">
                 <Link style={linkStyle} to="/">React News</Link> |&nbsp;
-                <Link style={linkStyle} to="/categories">Categories</Link>
+                <Link style={linkStyle} to="/categories">Categories</Link> |&nbsp;
+                <Link style={linkStyle} to="/tags">Tags</Link>
               </h1>
 
             </header>

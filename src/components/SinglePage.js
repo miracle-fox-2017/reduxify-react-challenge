@@ -56,7 +56,7 @@ export default class SinglePage extends Component {
     let postId = this.props.match.params.postId;
     const apiUrl = `https://wptavern.com/wp-json/wp/v2/posts/${+postId}?_embed`;
 
-    console.log(this.state.data.payload) // Passing value from link using state
+    console.log("---PASSING", this.state.data.payload) // Passing value from link using state
 
     axios.get(apiUrl)
       .then(({ data }) => {

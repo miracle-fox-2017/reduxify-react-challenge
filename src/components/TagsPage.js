@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import store from '../store'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { addTags, fetchTagsAPI, fetchTagsData } from '../actions/tagActions'
 
 class TagsPage extends Component {
   constructor(props) {
@@ -34,16 +35,9 @@ class TagsPage extends Component {
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const apiUrl = 'https://wptavern.com/wp-json/wp/v2/tags'
-    axios.get(apiUrl).then(({data}) => {
-      store.dispatch({
-        type: 'GET_TAGS',
-        payload: {
-          tags: data
-        }
-      })
-   }).catch(err => console.error({ message: 'Something wrong', error: err.message }));
+    this.props.fetchTags(apiUrl)
   }
 }
 
@@ -53,5 +47,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const connectTags = connect(mapStateToProps, null)(TagsPage)
-export default connectTags
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTags: (url) => dispatch(fetchTagsData(url))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TagsPage)
