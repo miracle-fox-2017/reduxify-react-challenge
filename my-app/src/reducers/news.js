@@ -1,6 +1,7 @@
 const initialState = {
   news: [],
-  headlineNews: []
+  headlineNews: [],
+  newsSearch:[]
 }
 
 export function rootReducer(state = initialState, action) {
@@ -9,6 +10,8 @@ export function rootReducer(state = initialState, action) {
       return { ...state, news: action.payload.news }
     case 'getHeadline':
       return { ...state, headlineNews: action.payload.headline }
+    case 'getKeyword':
+      return { ...state, newsSearch: action.payload.news }
     default:
       return state
   }

@@ -13,9 +13,9 @@ class HeadlineNews extends Component {
   render() {
     return (
 
-      <div className="App">
+      <div className="headline">
         <Header />
-        <div className="container">
+        <div className="container text-center">
           <button className="btn btn-info">Headline News</button>
           <div className="col-md-12">
             <div className="col-md-2">

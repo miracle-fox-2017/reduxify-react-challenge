@@ -11,13 +11,13 @@ import SearchingResult from './SearchingResult'
 class App extends Component {
   render() {
     return (
-      <Provider  store={store} >
+      <Provider store={store} >
         <Router>
           <div>
             <Route exact path="/" component={Home} />
             <Route exact path="/:url" render={(props) => <NewsDetail {...props} />} />
             <Route path="/news/headline" component={HeadlineNews} />
-            <Route path="/news/result/:searching" render={(props) => <SearchingResult {...props} />} />
+            <Route path="/news/searching" component={SearchingResult} />
           </div>
         </Router>
       </Provider>
