@@ -51,3 +51,10 @@ export const fetchApiHeroes = () => {
 		})		
 	}
 }
+
+export const deleteHero = (oneHero, allHero) => {
+	return (dispatch,getState) => {	
+		let heroes = allHero.filter(hero => hero.Name !== oneHero.Name)		
+		dispatch(getHeroes(heroes))
+	}
+}

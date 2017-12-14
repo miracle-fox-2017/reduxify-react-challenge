@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import store from '../store'
+// import store from '../store'
 import Hero from './Hero'	
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -12,17 +12,17 @@ class Home extends Component {
       	heroes: []
       }
 
-	  store.subscribe(() => {
-	  	if(!store.getState().subscribed){
-	      this.setState({
-	        heroes: store.getState().heroReducer.heroes,
-	        subscribed: true
-	      })
-	  }
-	  })      
+	  // store.subscribe(() => {
+	  // 	if(!store.getState().subscribed){
+	  //     this.setState({
+	  //       heroes: store.getState().heroReducer.heroes,
+	  //       subscribed: true
+	  //     })
+	  // }
+	  // })      
 	}	
 
-	componentWillMount() {
+	componentDidMount() {     	
 	    this.props.fetchApiHeroes()
 	}	
 
@@ -34,7 +34,7 @@ class Home extends Component {
 				<li style={{textDecoration:"none", float:"right"}} > <Link to='/heromovespeed/more'> Show Hero MS more then 300 with ReactRedux </Link> </li>
 			</ul>
 			<br/>
-		     	{ this.state.heroes.map(((hero,i) => {
+		     	{ this.props.heroes.map(((hero,i) => {
 			        return (
 			          <Hero heroList={hero} key={i}/>
 			        )
@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 	}	
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {     	
 	return {
 		fetchApiHeroes: () => dispatch(fetchApiHeroes())
 	}

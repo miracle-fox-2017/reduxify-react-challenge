@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getMoveSpeedMore } from '../actions/getHeroes'
 import { getMoveSpeedLess } from '../actions/getHeroes'
+import { fetchApiHeroes } from '../actions/getHeroes'
 
 class HeroFullDetail extends Component{	
 	render() {
@@ -11,7 +12,7 @@ class HeroFullDetail extends Component{
 			    <button> <Link to='/'> Back </Link> </button>
 				{this.props.heroes.map((hero,i) => {	
 					return(
-						<h4 key={i}> <span> Name </span> <small> {hero.Name}</small>
+						<h4 key={i} > <span> Name </span> <small> {hero.Name}</small>
 							 <span> MS </span> <small> {hero.Movespeed} </small>
 							 <span> HP </span> <small> {hero.HP} </small>
 							 <span> MANA </span> <small> {hero.Mana} </small>
@@ -29,7 +30,11 @@ class HeroFullDetail extends Component{
 			if(speed === "less"){
 				this.props.getMoveSpeedLess(this.props.heroes)
 			}	      	    						
-	}	
+	}
+	
+	componentWillUnmount() {
+		    this.props.fetchApiHeroes()
+	}
 }
 
 function mapStateToProps(state) {	     	
@@ -41,7 +46,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps (dispatch) {   	
 	return {
 		getMoveSpeedMore: (e) => dispatch(getMoveSpeedMore(e)),
-		getMoveSpeedLess: (e) => dispatch(getMoveSpeedLess(e))
+		getMoveSpeedLess: (e) => dispatch(getMoveSpeedLess(e)),
+		fetchApiHeroes: () => dispatch(fetchApiHeroes())
 	}
 }
 
