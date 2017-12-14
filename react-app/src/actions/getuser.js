@@ -23,3 +23,12 @@ export const fetchUser = () => {
     })
   }
 }
+
+export const delUser = (id) => {
+  return {
+    type: 'DELETE_USER',
+    payload: {
+      id
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { addUser, fetchUser } from '../actions/getuser'
+import { addUser, fetchUser, delUser } from '../actions/getuser'
 
 class User extends Component {
   constructor (props) {
@@ -22,6 +22,10 @@ class User extends Component {
   componentWillMount() {
     // this.getAxiosUser()
     this.props.fetchUser()
+  }
+
+  deleteHandler(id) {
+    this.props.delUser(id)
   }
 
   render () {
@@ -46,8 +50,7 @@ class User extends Component {
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
                   <td>
-                    <a className="button is-primary">Edit</a>
-                    <a className="button is-danger">Delete</a>
+                    <a onClick={ (e) => this.deleteHandler(item.id) } className="button is-danger">Delete</a>
                   </td>
                 </tr>
               )
@@ -68,7 +71,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addUser: (user) => dispatch(addUser(user)),
-    fetchUser: () => dispatch(fetchUser())
+    fetchUser: () => dispatch(fetchUser()),
+    delUser: (id) => dispatch(delUser(id))
   }
 }
 
