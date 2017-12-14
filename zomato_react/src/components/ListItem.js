@@ -11,24 +11,7 @@ class ListItem extends Component {
     }
   }
   componentWillMount = () => {
-    Axios.get('https://developers.zomato.com/api/v2.1/search', {
-      params: {
-        'lat': '-6.259926',
-        'lon': '106.781565',
-        'collection_id': this.props.sendCollectionId
-      },
-      headers: {
-        'user-key': '428923ad3bad98317ed12b98036fdc83'
-      }
-    }).then(({data: {restaurants}}) => {
-      // store.dispatch(getAllListItem(restaurants))
-      this.props.getAllListItem(restaurants)
-      this.setState({
-        collectionItem: this.props.listItem
-      })
-    }).catch((err) => {
-      console.log(err)
-    })
+    this.props.listItemRequest(this.props.listItem, this.props.sendCollectionId)
   }
   render () {
     let imgStyle = {
@@ -44,7 +27,7 @@ class ListItem extends Component {
     }
     return (
       <div className="row">
-      {this.state.collectionItem.map((collectionItem) => {
+      {this.props.listItem.map((collectionItem) => {
         return (
           <div className="col-md-3" key={collectionItem.restaurant.id}>
             <div className="card bg-dark text-white" style={cardStyle}>
@@ -70,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch => {
   return {
-    getAllListItem: listItem => dispatch(listItemAction.getAllListItem(listItem))
+    listItemRequest: (listItem, collectionId) => dispatch(listItemAction.listItemRequest(listItem, collectionId))
   }
 })
 

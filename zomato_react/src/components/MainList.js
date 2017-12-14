@@ -1,32 +1,13 @@
 import React, { Component } from 'react';
-import Axios from 'axios'
 import { connect } from 'react-redux'
 import * as collectionsAction from '../actions/collectionsAction'
 
 class MainList extends Component {
   constructor (props) {
     super (props)
-    this.state = {
-      collections: []
-    }
   }
   componentWillMount = () => {
-    Axios.get(`https://developers.zomato.com/api/v2.1/collections`, {
-      params: {
-        'lat': '-6.259926',
-        'lon': '106.781565'
-      },
-      headers: {
-        'user-key': '428923ad3bad98317ed12b98036fdc83'
-      }
-    }).then(({data}) => {
-      this.props.getAllCollections(data.collections)
-      this.setState({
-        collections: this.props.collections
-      })
-    }).catch((err) => {
-      console.log(err)
-    })
+    this.props.collectionsRequest()
   }
   sendCollectionId = (collectionId) => {
     this.props.sendCollectionsData(collectionId)
@@ -45,7 +26,7 @@ class MainList extends Component {
     }
     return (
       <div className="row">
-      {this.state.collections.map((collectionItem) => {
+      {this.props.collections.map((collectionItem) => {
         return (
           <div className="col-md-3" key={collectionItem.collection.collection_id}>
             <div className="card bg-dark text-white" style={cardStyle}>
@@ -66,14 +47,20 @@ class MainList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    collections: state.collectionList.collections
+  if (state.collectionList.collections !== undefined ) {
+    return {
+      collections: state.collectionList.collections
+    }
+  } else {
+    return {
+      collections: []
+    }
   }
+
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllCollections: collections => dispatch(collectionsAction.getAllCollections(collections))
+    collectionsRequest: collections => dispatch(collectionsAction.collectionsRequest(collections))
   }
 }
 
