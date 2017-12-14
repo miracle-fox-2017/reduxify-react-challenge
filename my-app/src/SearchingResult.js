@@ -22,8 +22,7 @@ class SearchingResult extends Component {
                   <a href={berita.url}>{berita.url}</a>
                 </div>
                 <div className="panel-footer">
-                  <p>{berita.description}</p>
-                  <a href="{berita.url}">{berita.url}</a>
+                  <p> <small> Reported by: {berita.author} </small></p>
                 </div>
               </div>
             )
