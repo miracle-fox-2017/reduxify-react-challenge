@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Hero from './Hero'
 import axios from 'axios'
-import store, { get_heroName } from './store/index'
+import store, { get_heroName } from '../store/index'
 import { connect } from 'react-redux'
 
 class Home extends React.Component {

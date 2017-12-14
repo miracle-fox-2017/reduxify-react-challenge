@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { get_heroName, fetchdotaAPI } from './action/api'
+import { get_heroName, fetchdotaAPI } from '../action/api'
 
 import HeroReact from './HeroReact'
 

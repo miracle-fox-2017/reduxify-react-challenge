@@ -4,9 +4,9 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Dota from './Dota'
-import Home from './Home'
-import HomeReactRedux from './Home-ReactRedux'
+import Dota from './component/Dota'
+import Home from './component/Home'
+import HomeReactRedux from './component/Home-ReactRedux'
 
 class Navbar extends React.Component {
   constructor () {
