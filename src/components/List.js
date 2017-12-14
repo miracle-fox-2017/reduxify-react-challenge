@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Card, Button } from 'antd';
+import { Layout, Card, Input, Form, Button } from 'antd';
 import { fecthPhotos, fecthPhotosFirebase, tweetFromPhotos } from '../actions/tweetPhoto'
 import {connect} from 'react-redux'
 
+const FormItem = Form.Item;
+const formItemLayout = {
+  width: 'auto'
+};
 const { Content } = Layout;
 const gridStyle = {
   width: '25%',
@@ -41,11 +45,10 @@ class PostTweet extends Component {
                       <p>Tersenyum: {photos.tersenyum}</p>
                       <p>Umur: {photos.umur}</p>
                       <p>Bibir: {photos.bibir}</p>
-                      <Button type="primary" onClick={ () => this.props.tweetPhoto(photos.url)}>Post to Twitter</Button>
+                      <Button type="primary" onClick={ () => this.props.tweetPhoto(this.state.email)}>Post to Twitter</Button>
                     </Card.Grid>
                   )
                 })}
-                
               </Card>
             </div>
           </div>
@@ -62,7 +65,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    tweetPhoto: (photo) => dispatch(tweetFromPhotos(photo)),
+    tweetPhoto: (search) => dispatch(tweetFromPhotos(search)),
     fetchPhotos: () => dispatch(fecthPhotos()),
     fetchFirebase: () => dispatch(fecthPhotosFirebase())
   }

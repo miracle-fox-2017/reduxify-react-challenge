@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './components/Home'
 import Inputs from './components/Input'
-import PostTweet from './components/PostTweet'
+import List from './components/List'
+import Movies from './components/Movies'
 import './App.css';
 import firebase from 'firebase';
 import { Layout, Menu } from 'antd';
@@ -46,12 +47,14 @@ class App extends Component {
                   >
                     <Menu.Item><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item><Link to="/input">Input</Link></Menu.Item>
-                    <Menu.Item><Link to="/posttweet">Post To Tweet</Link></Menu.Item>
+                    <Menu.Item><Link to="/list">List Using React Redux</Link></Menu.Item>
+                    <Menu.Item><Link to="/movies">Find Movies</Link></Menu.Item>
                   </Menu>
                   <hr/>
                     <Route exact path="/" component={Home}/>
                     <Route path="/input" component={Inputs}/>
-                    <Route path="/posttweet" component={PostTweet}/>
+                    <Route path="/list" component={List}/>
+                    <Route path="/movies" component={Movies}/>
                   </div>
               </Router>
             </Header>

@@ -1,8 +1,6 @@
 import Axios from 'axios'
 import firebase from 'firebase'
-import TinEye from 'tineye-api'
-var api = new TinEye('https://api.tineye.com/rest/', '.E2F9UE00zKwer5mxdNS', 'VwKm-bi2ZwgO=hCfP.^WzsiiMS*2NkGS1OzdpR*.');
-
+  
 export const fecthPhotos = (allphotos) => {
   return {
     type: 'ALL_PHOTOS_FIREBASE',
@@ -26,28 +24,13 @@ export const fecthPhotosFirebase = () => {
 
 export const tweetFromPhotos = (dataToTweet) => {
   console.log('DATA YG AKAN DI TWEET', dataToTweet)
-  var url = dataToTweet;
-  var params = {
-    'offset': 0,
-    'limit': 10,
-    'sort': 'score',
-    'order': 'desc'
-  };
-  api.searchUrl(url, params)
-    .then(function(response) {
-      console.log('HASIL PENCARIAN', response);
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
-  // client.post('statuses/update', {status: dataToTweet})
-  // .then(function (tweet) {
-    
-  //   console.log(tweet);
-  // })
-  // .catch(function (error) {
-  //   console.log(error)
-  // })
+  Axios.post('https://api.themoviedb.org/3/search/movie?api_key=19e89bad298de6dc0f532b07d991632e&language=en-US&query=hero&page=1&include_adult=false')
+  .then(({data}) => {
+    console.log('HASIL CARI', data.results)
+  })
+  .catch(err => {
+    console.log(err)
+  })
   return {
     type: 'TO_TWEET'
   }
