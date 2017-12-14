@@ -6,11 +6,9 @@ const initialState = {
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
     case 'getNews':
-      state.news = action.news
-      return { ...state }
+      return { ...state, news: action.payload.news }
     case 'getHeadline':
-      state.headlineNews = action.headline
-      return { ...state }
+      return { ...state, headlineNews: action.payload.headline }
     default:
       return state
   }

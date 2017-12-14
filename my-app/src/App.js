@@ -6,6 +6,7 @@ import './App.css';
 import Home from './Home'
 import HeadlineNews from './HeadlineNews'
 import NewsDetail from './NewsDetail'
+import SearchingResult from './SearchingResult'
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/:url" render={(props) => <NewsDetail {...props} />} />
             <Route path="/news/headline" component={HeadlineNews} />
+            <Route path="/news/result/:searching" render={(props) => <SearchingResult {...props} />} />
           </div>
         </Router>
       </Provider>

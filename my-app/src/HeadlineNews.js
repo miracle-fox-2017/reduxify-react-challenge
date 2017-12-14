@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import axios from 'axios'
 import './App.css';
 import Header from './Header'
 import NewsList from './NewsList'
-import { getHeadline } from './actions/getNews'
+import { getHeadline, fetchHeadlineAsync } from './actions/getNews'
 
 class HeadlineNews extends Component {
 
   componentWillMount() {
-    this.getData()
-  }
-  getData() {
-    axios.get('https://newsapi.org/v2/top-headlines?sources=al-jazeera-english&apiKey=39338eeb41a348e5b1d8ce0fbe0906b7')
-      .then((dataNews) => {
-        this.props.getHeadline(dataNews.data.articles)
-      })
-      .catch((reason) => {
-        console.log(reason)
-      })
+    this.props.fetchHeadline()
   }
   render() {
     return (
@@ -31,7 +21,7 @@ class HeadlineNews extends Component {
             <div className="col-md-2">
             </div>
             <div className="col-md-8">
-            {this.props.headlines.map((berita, index) => {
+              {this.props.headlines.map((berita, index) => {
                 return <NewsList key={index} news={berita} />
               })}
             </div>
@@ -50,7 +40,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    getHeadline: (value) => dispatch(getHeadline(value))
+    getHeadline: (news) => dispatch(getHeadline(news)),
+    fetchHeadline: () => dispatch(fetchHeadlineAsync())
   }
 }
 const connectedHeadlineNews = connect(mapStateToProps, mapDispatchToProps)(HeadlineNews)
