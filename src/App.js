@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './components/Home'
 import Inputs from './components/Input'
+import PostTweet from './components/PostTweet'
 import './App.css';
 import firebase from 'firebase';
 import { Layout, Menu } from 'antd';
@@ -19,7 +20,6 @@ class App extends Component {
       databaseURL: "https://ecommerce-186802.firebaseio.com",
       projectId: "ecommerce-186802"
     };
-
     firebase.initializeApp(config);
 
     this.state = {
@@ -46,10 +46,12 @@ class App extends Component {
                   >
                     <Menu.Item><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item><Link to="/input">Input</Link></Menu.Item>
+                    <Menu.Item><Link to="/posttweet">Post To Tweet</Link></Menu.Item>
                   </Menu>
                   <hr/>
                     <Route exact path="/" component={Home}/>
                     <Route path="/input" component={Inputs}/>
+                    <Route path="/posttweet" component={PostTweet}/>
                   </div>
               </Router>
             </Header>

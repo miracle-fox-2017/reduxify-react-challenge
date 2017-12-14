@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import Axios from 'axios'
 import store from '../store'
 import {savePhoto} from '../actions'
-import {connect} from 'react-redux'
 
 const FormItem = Form.Item;
 const { Content } = Layout;
@@ -29,27 +28,26 @@ class Inputs extends Component {
     state[e.target.name]= e.target.value
     this.setState(state)
   }
-  // Processing = (e) => {
-    // e.preventDefault()
-    // console.log(this.state.avatarURL)
-    // Axios.post(`http://api.skybiometry.com/fc/faces/detect.json?api_key=6obnuu0u9u04bvimnne28ni345&api_secret=5c9bq4igc78d0islt74i7fi2qa&urls=${this.state.avatarURL}&attributes=all`)
-    // .then(({data}) => {
-    //   let result = data.photos[0].tags[0].attributes
-    //   store.dispatch(savePhoto({
-    //     result:result,
-    //     url: this.state.newData.avatarURL
-    //   }))
-    //   this.setState({
-    //     uploaded: true,
-    //     newData: {
-    //       avatarURL: ''
-    //     }
-    //   })
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-  // }
+  Processing = (e) => {
+    e.preventDefault()
+    Axios.post(`http://api.skybiometry.com/fc/faces/detect.json?api_key=6obnuu0u9u04bvimnne28ni345&api_secret=5c9bq4igc78d0islt74i7fi2qa&urls=${this.state.avatarURL}&attributes=all`)
+    .then(({data}) => {
+      let result = data.photos[0].tags[0].attributes
+      store.dispatch(savePhoto({
+        result:result,
+        url: this.state.newData.avatarURL
+      }))
+      this.setState({
+        uploaded: true,
+        newData: {
+          avatarURL: ''
+        }
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
   render() {
     return (
       <div>
@@ -69,40 +67,13 @@ class Inputs extends Component {
               >
             </Card>
             }
-            <Button type="primary" onClick={() => this.props.processing(this.state.newData.avatarURL)}>Process</Button>
+            <Button type="primary" onClick={this.Processing}>Process</Button>
           </div>
         </Content>
       </div>
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  let that = this
-  return {
-    processing: (url) => {
-      Axios.post(`http://api.skybiometry.com/fc/faces/detect.json?api_key=6obnuu0u9u04bvimnne28ni345&api_secret=5c9bq4igc78d0islt74i7fi2qa&urls=${url}&attributes=all`)
-      .then(({data}) => {
-        let result = data.photos[0].tags[0].attributes
-        dispatch(savePhoto({
-          result: result,
-          url: url
-        }))
-        // that.setState({
-        //   uploaded: true,
-        //   newData: {
-        //     avatarURL: ''
-        //   }
-        // })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    },
-    masukSini(){
-      console.log('INI BARU')
-    }
-  }
-}
-const connectedInput = connect(null, mapDispatchToProps)(Inputs)
-export default connectedInput
+
+export default Inputs
 
