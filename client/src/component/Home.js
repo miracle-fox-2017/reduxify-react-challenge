@@ -4,6 +4,7 @@ import Hero from './Hero'
 import axios from 'axios'
 import store, { get_heroName } from '../store/index'
 import { connect } from 'react-redux'
+import logo from '../dota2.png';
 
 class Home extends React.Component {
   constructor () {
@@ -38,7 +39,8 @@ class Home extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="table-responsive" >
-          <h1>DOTA HERO WITH REDUX</h1>
+
+          <h1> <img src={logo} className="App-logo" alt="logo"/> DOTA HERO WITH REDUX <img src={logo} className="App-logo" alt="logo"/> </h1>
            <table className="table" border="2px">
              <thead>
                <tr>

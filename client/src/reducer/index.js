@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import Dota from './HeroRedux'
+import News from './News'
 
 const listReducer = combineReducers({
-  Dota
+  Dota,
+  News
 })
 
 export default listReducer

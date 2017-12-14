@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { get_heroName, fetchdotaAPI } from '../action/api'
-
+import logo from '../dota2.png';
 import HeroReact from './HeroReact'
 
 class HomeReactRedux extends Component {
@@ -20,7 +20,7 @@ class HomeReactRedux extends Component {
   render () {
     return (
         <div>
-          <h1>DOTA HERO WITH REACT-REDUX</h1>
+          <h1><img src={logo} className="App-logo" alt="logo"/> DOTA HERO WITH REACT-REDUX <img src={logo} className="App-logo" alt="logo"/></h1>
           <table className="table" border="2px">
             <thead>
               <tr>

@@ -7,7 +7,6 @@ const middleware = applyMiddleware (logger, thunk)
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export function get_heroName(value) {
-  console.log('INI DI STORE', value);
   return {
     type: 'GET_HERO',
     payload: {
