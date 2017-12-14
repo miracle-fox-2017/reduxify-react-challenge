@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { restaurantApp } from './redux/reducers'
 import { Provider } from 'react-redux'
-import store from './redux/store'
-import axios from 'axios';
+import { store } from './redux/store'
 import {
   BrowserRouter as Router,
   Route
@@ -26,17 +25,17 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <div className="App">
-        <Router>
-          <div>
-            <Navbar/>
-            <div className="container">
-              <Route exact path="/" render={(props) => (<Timeline test={this.state.zomato} {...props}/>)}/>
-              <Route path="/detail/:id" component={DetailItem}/>
+        <div className="App">
+          <Router>
+            <div>
+              <Navbar/>
+              <div className="container">
+                <Route exact path="/" render={(props) => (<Timeline test={this.state.zomato}  {...props}/>)}/>
+                <Route path="/detail/:id" component={DetailItem}/>
+              </div>
             </div>
-          </div>
-        </Router>
-      </div>
+          </Router>
+        </div>
       </Provider>
     );
   }

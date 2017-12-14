@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import store from './redux/store'
+import React, { Component } from 'react'
 import { getRestaurants } from './redux/actions'
 import {
   Link
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Navbar, Nav, FormControl, FormGroup, Button} from 'react-bootstrap';
 
 class NavbarZomato extends Component {
@@ -25,9 +25,7 @@ class NavbarZomato extends Component {
     event.preventDefault();
   }
   getData(location){
-    getRestaurants(location, cb => {
-      store.dispatch(cb)
-    })
+    this.props.getRestaurantList(location)
   }
   render () {
     return (
@@ -51,4 +49,17 @@ class NavbarZomato extends Component {
   }
 }
 
-export default NavbarZomato;
+const mapDispatchToProps = dispatch => {
+  return {
+    getRestaurantList: (location) => {
+      dispatch(getRestaurants(location))
+    }
+  }
+}
+
+const NavbarRestauran = connect(
+  null,
+  mapDispatchToProps
+)(NavbarZomato)
+
+export default NavbarRestauran;
