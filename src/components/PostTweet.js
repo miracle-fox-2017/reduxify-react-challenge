@@ -41,7 +41,7 @@ class PostTweet extends Component {
                       <p>Tersenyum: {photos.tersenyum}</p>
                       <p>Umur: {photos.umur}</p>
                       <p>Bibir: {photos.bibir}</p>
-                      <Button type="primary" onClick={ () => this.props.tweetPhoto(photos)}>Post to Twitter</Button>
+                      <Button type="primary" onClick={ () => this.props.tweetPhoto(photos.url)}>Post to Twitter</Button>
                     </Card.Grid>
                   )
                 })}
