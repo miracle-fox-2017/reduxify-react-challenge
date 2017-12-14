@@ -2,12 +2,11 @@
     lastArticles: []
   }
   
-  function reducerArticles(state = initialState, action) {
-    if (action.type === 'ARTICLES') {
-      return {...state, articles: action.payload}
+  function reducerArticleReact(state = initialState, action) {
+    if (action.type === 'ARTICLES-REACT-REDUX') {
+      return {...state, lastArticles: action.payload}
     }
-    
     return state
   }
   
-  export default reducerArticles
+  export default reducerArticleReact

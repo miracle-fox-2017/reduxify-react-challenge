@@ -1,13 +1,9 @@
 import { createStore, applyMiddleware } from 'redux'
 import articles from '../reducer'
 import logger from 'redux-logger' 
+import thunk from 'redux-thunk'
 
-const mylogger = (store) => (next) => (action) => {
-    console.log('LOgged Action', action)
-    next(action)
-}
-const store = createStore(articles, 
-    applyMiddleware(logger)
-)
+const middleware = applyMiddleware(logger, thunk)
+const store = createStore(articles, middleware)
 
 export default store

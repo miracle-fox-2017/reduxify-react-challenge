@@ -8,7 +8,7 @@ import ArticleId from './ArticleId'
 import SearchArticle from './SearchArticle'
 import store from './store'
 import { Provider } from 'react-redux'
-import TheArticleReact from './TheArticleReact' 
+import ArticleListReactRedux from './ArticleListReactRedux' 
 
 class App extends Component {
   
@@ -22,7 +22,7 @@ class App extends Component {
           </div>
           <div>
             <Route exact path="/" component={TheArticle} />
-            <Route exact path="/articlesReact" component={TheArticleReact} />
+            <Route exact path="/articlesReact" component={ArticleListReactRedux} />
             <Route  path="/article/:url" render={(props) => <ArticleId {...props}/> } />
             <Route exact path="/search/:keyword" component={SearchArticle}/>
           </div>

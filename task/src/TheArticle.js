@@ -3,7 +3,7 @@ import ArticleList from './ArticleList'
 import axios from 'axios'
 import ArticleItem from './ArticleItem';
 import store from './store/'
-import { AddArticles } from './actions/actionArticles'
+import { AddArticlesRedux } from './actions/actionsArticlesRedux'
 
 class TheArticle extends Component {
   constructor () {
@@ -12,9 +12,9 @@ class TheArticle extends Component {
       articles: []
     }
     store.subscribe(() => {
-      console.log('subscribe', store.getState().reducerArticles)
+      console.log('subscribe', store.getState().reducerArticlesRedux)
       this.setState({
-        articles: store.getState().reducerArticles
+        articles: store.getState().reducerArticlesRedux.lastArticles
       })
     })
     this.getArticleById = this.getArticleById.bind(this)
@@ -44,7 +44,7 @@ class TheArticle extends Component {
 componentWillMount() {
     axios.get('https://newsapi.org/v2/top-headlines?sources=the-next-web,the-verge&apiKey=7c22194db6574183a086c357016e6e6f')
     .then(({data}) => {
-      store.dispatch(AddArticles(data.articles))
+      store.dispatch(AddArticlesRedux(data.articles))
     })
     .catch(function (error) {
       console.log(error);
