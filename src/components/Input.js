@@ -34,7 +34,7 @@ class Inputs extends Component {
     .then(({data}) => {
       let result = data.photos[0].tags[0].attributes
       store.dispatch(savePhoto({
-        result:result,
+        result: result,
         url: this.state.newData.avatarURL
       }))
       this.setState({
@@ -45,6 +45,12 @@ class Inputs extends Component {
       })
     })
     .catch((error) => {
+      alert('Try Another Picture')
+      this.setState({
+        newData: {
+          avatarURL: ''
+        }
+      })
       console.log(error);
     });
   }

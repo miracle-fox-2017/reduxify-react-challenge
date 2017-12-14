@@ -2,7 +2,6 @@ const initialState = {
   allPhotos: []
 }
 const homeInput = (state = initialState, action) => {
-  // console.log('KAPAN MASUK SINI', action)
   switch (action.type) {
     case 'ALL_PHOTOS':
       state.allPhotos = action.dataPhotos
@@ -11,7 +10,7 @@ const homeInput = (state = initialState, action) => {
       state.allPhotos.concat(action.newPhoto)
       return {...state}
     default:
-      break;
+      return state
   }
 }
 

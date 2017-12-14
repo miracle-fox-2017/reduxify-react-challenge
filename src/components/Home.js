@@ -25,8 +25,9 @@ class Home extends Component {
       }
     };
     store.subscribe(() => {
+      console.log(store.getState())
       this.setState({
-        allPhotos: store.getState().allPhotos
+        allPhotos: store.getState().homeInput.allPhotos
       })
     })
   }

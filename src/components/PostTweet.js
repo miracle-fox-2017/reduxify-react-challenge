@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
-import { Layout, Card } from 'antd';
-import store from '../store'
-import { getPhotos } from '../actions'
-import { fecthPhotos, fecthPhotosFirebase } from '../actions/tweetPhoto'
+import { Layout, Card, Button } from 'antd';
+import { fecthPhotos, fecthPhotosFirebase, tweetFromPhotos } from '../actions/tweetPhoto'
 import {connect} from 'react-redux'
 
 const { Content } = Layout;
@@ -17,9 +14,6 @@ let  gambarStyle = {
 };
 
 class PostTweet extends Component {
-  constructor(){
-    super()
-  }
   componentWillMount () {
     this.props.fetchFirebase()
   }
@@ -31,8 +25,7 @@ class PostTweet extends Component {
             <h1>Choose Photo to Tweet</h1>
             <div>
               <Card key={Math.random()}  title=''>
-              {this.props.allPhotos}
-                {/* {this.state.allPhotos.map(photos => {
+                {this.props.allPhotos.map(photos => {
                   return(  
                     <Card.Grid key={Math.random()} style={gridStyle}>
                       <img alt="" style={gambarStyle} src={photos.url} />
@@ -48,9 +41,11 @@ class PostTweet extends Component {
                       <p>Tersenyum: {photos.tersenyum}</p>
                       <p>Umur: {photos.umur}</p>
                       <p>Bibir: {photos.bibir}</p>
+                      <Button type="primary" onClick={ () => this.props.tweetPhoto(photos)}>Post to Twitter</Button>
                     </Card.Grid>
                   )
-                })} */}
+                })}
+                
               </Card>
             </div>
           </div>
@@ -61,14 +56,14 @@ class PostTweet extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state, 'INJIN')
   return {
-    // allPhotos: state.allphotos
+    allPhotos: state.postTweet.allphotos
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPhotos: (photos) => dispatch(fecthPhotos(photos)),
+    tweetPhoto: (photo) => dispatch(tweetFromPhotos(photo)),
+    fetchPhotos: () => dispatch(fecthPhotos()),
     fetchFirebase: () => dispatch(fecthPhotosFirebase())
   }
 }
