@@ -3,8 +3,6 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { addUser, fetchUser } from '../actions/getuser'
 
-console.log(addUser)
-
 class User extends Component {
   constructor (props) {
     super()
@@ -28,24 +26,29 @@ class User extends Component {
 
   render () {
     return (
-      <div className="column is-pulled-left is-8">
-        <table class="table">
+      <div className="column is-12">
+        <table className="table">
           <thead>
             <tr>
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {this.props.users.users.map((item, i) => {
               return (
-                <tr>
+                <tr key={i}>
                   <td>{i + 1}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
+                  <td>
+                    <a className="button is-primary">Edit</a>
+                    <a className="button is-danger">Delete</a>
+                  </td>
                 </tr>
               )
             })}

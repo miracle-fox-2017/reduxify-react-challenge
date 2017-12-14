@@ -7,8 +7,7 @@ import store from './Store'
 import actions from './actions/getphoto'
 
 import TheNavBar from './components/TheNavBar'
-import TheSideBar from './components/TheSideBar'
-import TheRightSideBar from './components/TheRightSideBar'
+import HomeLayout from './components/HomeLayout'
 import Home from './components/Home'
 import ImageShow from './components/Flick';
 import Increment from './components/Increment'
@@ -46,13 +45,11 @@ class App extends Component {
           <div>
           <Route path="/" component={TheNavBar} />
             <div className="container head-fix">
-              <div className="columns">
-                <Route path="/" component={TheSideBar} />
-                <Route exact path="/" component={Home} />
+              <div>
+                <Route exact path="/" render={ (props) => <HomeLayout><Home {...props} /></HomeLayout> } />
                 <Route exact path="/user" component={User} />
                 <Route exact path="/increment" component={Increment} />
-                <Route path="/flick/:farmid/:serverid/:id/:secret" component={ImageShow} />
-                <Route path="/" component={TheRightSideBar} />
+                <Route exact path="/flick/:farmid/:serverid/:id/:secret" render={ (props) => <HomeLayout><ImageShow {...props} /></HomeLayout> } />
               </div>
             </div>
           </div>

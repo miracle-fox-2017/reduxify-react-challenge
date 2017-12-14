@@ -5,10 +5,10 @@ import logo from '../logo.svg';
 const TheNavBar = (props) => (
   <div className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-      <a className="navbar-item">
-        <img src={logo} className="Top-logo" alt="logo" />
-        React App !!!
-      </a>
+      <Link className="navbar-item" to="/">
+          <img src={logo} className="Top-logo" alt="logo" />
+          React App !!!
+      </Link>
 
       <button className="button navbar-burger">
         <span></span>
