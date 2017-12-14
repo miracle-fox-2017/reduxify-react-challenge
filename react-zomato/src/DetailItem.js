@@ -13,7 +13,7 @@ class DetailItem extends Component {
     return (
       <div>
         {tempProps === ''? (
-          <p>Mohon Tunggu</p>
+          <p>Mohon Tunggu Ya</p>
         ) : (
           <Panel header={tempProps.name} bsStyle="primary">
             <img src={tempProps.thumb} alt={tempProps.name}/><br/>
