@@ -37,23 +37,24 @@ export default class SearchPage extends Component {
   }
 
   render() {
-    let content = ''
+    let content
     if(this.state.searchResult.length > 0 && this.state.loadingSearch === false) {
-      content = <GameList gameList={this.state.searchResult} />      
+      content = <div className="content">
+                  <h1 className="ui header">Result Game</h1>
+                  <GameList gameList={this.state.searchResult}/>      
+                </div> 
     } else {
       if(this.state.loadingSearch === false) {
-        content = <h1>Game not found...</h1>
+        content = <div className="content">
+                    <h1>Game not found...</h1>
+                  </div>
       } else {
-        content = <h1>Searching Game...</h1>        
+        content = <div className="ui active centered inline loader"></div>
       }
     }
     return(
-      <div>
-        <p className="title">Search Game</p>
-        <p className="subtitle">Search Result</p>
-        <div className="content">
-          {content}
-        </div>
+      <div className="ui grid segment">
+        {content}
       </div>
     )
   }

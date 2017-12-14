@@ -13,20 +13,14 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
-            <div className="columns is-centered">
-              <div className="column is-8">
-                <div className="tile is-vertical">
-                  <Navbar/>
-                  <div className="tile is-parent">
-                    <article className="tile is-child notification is-danger">
-                      <Route exact path="/" component={MainPage}/>
-                      <Route exact path="/game/:id" component={GameDetail}/>
-                      <Route path="/game/search/:keyword" component={SearchPage}/>
-                    </article>
-                  </div>
-                </div>
-              </div>
+          <div className="ui container">
+            <Navbar/>
+            <div className="tile is-parent">
+              <article className="tile is-child notification is-danger">
+                <Route exact path="/" component={MainPage}/>
+                <Route exact path="/game/:id" component={GameDetail}/>
+                <Route path="/game/search/:keyword" component={SearchPage}/>
+              </article>
             </div>
           </div>
         </Router>

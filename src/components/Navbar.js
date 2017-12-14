@@ -33,26 +33,20 @@ export default class Navbar extends Component {
     }
 
     return (
-      <nav className="navbar" aria-label="dropdown navigation">
-        <div className="navbar-start">
-          <div className="navbar-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Game_%28rapper%29_Logo.png" alt="logo" width="112" height="28"/>
-          </div>
-          <Link to="/" className="navbar-item">
-            Home
-          </Link>
+      <div className="ui stackable menu">
+        <div className="item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/G_Guadalupana-logo.gif" alt="logo"/>
         </div>
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="control">
-              <input className="input" type="text" placeholder="Find a Game" onChange={(e) => this.setKeyword(e)}/>
-            </div>
-            <Link to={url} className="control">
+        <Link to="/" className="item">Home</Link>
+        <div className="right item">
+          <div className="ui action input">
+            <input type="text" placeholder="Find a Game..." onChange={(e) => this.setKeyword(e)}/>
+            <Link to={url} className="ui button primary">
               {buttonSearch}
             </Link>
           </div>
         </div>
-      </nav>
+      </div>
     )
   }
 }

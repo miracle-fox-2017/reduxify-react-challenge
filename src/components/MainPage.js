@@ -16,13 +16,19 @@ class MainPage extends Component {
   }
 
   render() {
+    let content
+    if (this.props.gameList.length > 0) {
+      content = <div className="content">
+                  <h1 className="ui header">Featured List</h1>
+                  <GameList gameList={this.props.gameList} />
+                </div>
+    } else {
+      content = <div className="ui active centered inline loader"></div>
+                
+    }
     return(
-      <div>
-        <p className="title">Game List</p>
-        <p className="subtitle">Featured Game</p>
-        <div className="content">
-          <GameList gameList={this.props.gameList} />
-        </div>
+      <div className="ui grid segment">
+          {content}
       </div>
     )
   }

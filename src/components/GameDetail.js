@@ -33,15 +33,15 @@ class GameDetail extends Component {
   render() {
     let content = ''
     if(this.state.loading) {
-      content = <div><h1 className="title">Loading...</h1></div>
+      content = <div className="ui active centered inline loader"></div>
     } else {
-      content = <div className="column is-12 article">
-                  <p className="title">{this.props.gameData.name}</p>
+      content = <div className="content">
+                  <h1 className="ui header">{this.props.gameData.name}</h1>
                   {ReactHtmlParser(this.props.gameData.description || this.props.gameData.deck)}
                 </div>
     }
     return(
-      <div>
+      <div className="ui grid segment">
         {content}
       </div>
     )
