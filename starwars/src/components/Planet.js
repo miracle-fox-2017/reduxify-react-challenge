@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
-import {allPlanets} from '../actions'
+import {allPlanets, allPlanetsAsync} from '../actions'
 import '../App.css'
 
 const swapi = axios.create({
@@ -13,11 +13,7 @@ const swapi = axios.create({
 class OneHero extends Component {
 
   componentWillMount() {
-    swapi.get('/planets')
-      .then(({ data }) => {
-        this.props.planets(data.results)
-      })
-      .catch(err => console.error(err))
+    this.props.fetchPlanets()
   }
 
   render() {
@@ -50,9 +46,6 @@ class OneHero extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('===========STATE TO PROPS=================');
-  console.log(state);
-  console.log('====================================');
   return {
     allplanets: state.heroReducer.planets
   }
@@ -60,7 +53,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    planets: (params) => dispatch(allPlanets(params))
+    planets: (params) => dispatch(allPlanets(params)),
+    fetchPlanets: () => dispatch(allPlanetsAsync())
   }
 }
 
