@@ -29,8 +29,28 @@ class User extends Component {
   render () {
     return (
       <div className="column is-pulled-left is-8">
-        {JSON.stringify(this.props.users.users)}
-        <h1 className="title is-3"></h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.users.users.map((item, i) => {
+              return (
+                <tr>
+                  <td>{i + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.phone}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     )
   }
