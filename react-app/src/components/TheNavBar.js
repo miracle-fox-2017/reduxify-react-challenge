@@ -20,6 +20,7 @@ const TheNavBar = (props) => (
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
           <Link className="navbar-item" to="/increment">Counter</Link>
+          <Link className="navbar-item" to="/user">User List</Link>
         </div>
 
       </div>

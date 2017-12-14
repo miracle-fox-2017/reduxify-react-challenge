@@ -12,6 +12,7 @@ import TheRightSideBar from './components/TheRightSideBar'
 import Home from './components/Home'
 import ImageShow from './components/Flick';
 import Increment from './components/Increment'
+import User from './components/User'
 import './App.css';
 
 class App extends Component {
@@ -48,8 +49,9 @@ class App extends Component {
               <div className="columns">
                 <Route path="/" component={TheSideBar} />
                 <Route exact path="/" component={Home} />
+                <Route exact path="/user" component={User} />
                 <Route exact path="/increment" component={Increment} />
-                <Route path="/flick/:farmid/:serverid/:id/:secret" component={ImageShow} message="hehehe"/>
+                <Route path="/flick/:farmid/:serverid/:id/:secret" component={ImageShow} />
                 <Route path="/" component={TheRightSideBar} />
               </div>
             </div>
