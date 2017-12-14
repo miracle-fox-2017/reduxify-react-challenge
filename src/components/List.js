@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Layout, Card, Input, Form, Button } from 'antd';
-import { fecthPhotos, fecthPhotosFirebase, tweetFromPhotos } from '../actions/tweetPhoto'
+import { Layout, Card, Button } from 'antd';
+import { fecthPhotos, fecthPhotosFirebase } from '../actions/tweetPhoto'
 import {connect} from 'react-redux'
 
-const FormItem = Form.Item;
-const formItemLayout = {
-  width: 'auto'
-};
 const { Content } = Layout;
 const gridStyle = {
   width: '25%',
@@ -65,7 +61,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    tweetPhoto: (search) => dispatch(tweetFromPhotos(search)),
     fetchPhotos: () => dispatch(fecthPhotos()),
     fetchFirebase: () => dispatch(fecthPhotosFirebase())
   }

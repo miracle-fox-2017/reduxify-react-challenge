@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Layout, Input, Card, Form, Button } from 'antd';
 import { findMovies } from '../actions/findMovies'
 import {connect} from 'react-redux'
-const { Meta } = Card;
 
 
 const FormItem = Form.Item;
@@ -44,21 +43,18 @@ class Movies extends Component {
             <Button type="primary" onClick={ () => this.props.findMovies(this.state.movie)}>Process</Button>
           </div>
           <Card key={Math.random()}  title=''>
-                {this.props.allMovies.map(movie => {
-                    if(movie.poster_path){
-                      return(
-                        <Card.Grid key={Math.random()} style={gridStyle}>
-                          <h2>{movie.original_title}</h2>
-                          <p>Release: {movie.release_date}</p>
-                          <p>Rate: {movie.vote_average}</p>
-                          <img alt="" style={gambarStyle} src={'https://image.tmdb.org/t/p/w500'+movie.poster_path} />
-                          <p>Overview: {movie.overview.substring(0, 100)}</p>
-                        </Card.Grid>
-                      )
-                    }  
-                })}
-              </Card>
-          {JSON.stringify(this.props.allMovies)}
+            {this.props.allMovies.map(movie => {
+              return(
+                <Card.Grid key={Math.random()} style={gridStyle}>
+                  <h2>{movie.original_title}</h2>
+                  <p>Release: {movie.release_date}</p>
+                  <p>Rate: {movie.vote_average}</p>
+                  <img alt="" style={gambarStyle} src={'https://image.tmdb.org/t/p/w500'+movie.poster_path} />
+                  <p>Overview: {movie.overview.substring(0, 100)}</p>
+                </Card.Grid>
+              )
+            })}
+          </Card>
         </Content>
       </div>
     )
