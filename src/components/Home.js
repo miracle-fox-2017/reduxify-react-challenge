@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import store from '../store'
 import Hero from './Hero'	
-import axios from 'axios'
-import { getHeroes } from '../actions/getHeroes'
 import { Link } from 'react-router-dom'
-const heroApi = `http://api.herostats.io/heroes/all`
+import {connect} from 'react-redux'
+import { fetchApiHeroes } from '../actions/getHeroes'
 
 class Home extends Component {
 	constructor() {	
@@ -24,17 +23,7 @@ class Home extends Component {
 	}	
 
 	componentWillMount() {
-	    axios.get(heroApi)
-	    .then(response => {
-	      let tempHero = []
-	      for (let hero in response.data){
-	        tempHero.push(response.data[hero])
-	      }
-	      store.dispatch(getHeroes(tempHero))
-	    })
-	    .catch(err => {
-	      console.log(err)
-	    })
+	    this.props.fetchApiHeroes()
 	}	
 
 	render() {
@@ -56,4 +45,16 @@ class Home extends Component {
 	}
 }
 
-export default Home
+function mapStateToProps(state) {	      	
+	return {
+		heroes: state.heroReducer.heroes
+	}	
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		fetchApiHeroes: () => dispatch(fetchApiHeroes())
+	}
+}
+
+export default connect (mapStateToProps,mapDispatchToProps)(Home)

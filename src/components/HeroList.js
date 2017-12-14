@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import store from '../store'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getMoveSpeedMore } from '../actions/getHeroes'
@@ -22,21 +21,28 @@ class HeroFullDetail extends Component{
 			</div>			
 		)
 	}
-	componentWillMount() {
+	componentWillMount() {   	
 			const speed = this.props.match.params.moveSpeed
 			if(speed === "more"){
-				store.dispatch(getMoveSpeedMore(this.props.heroes))
+				this.props.getMoveSpeedMore(this.props.heroes)
 			}
 			if(speed === "less"){
-				store.dispatch(getMoveSpeedLess(this.props.heroes))
+				this.props.getMoveSpeedLess(this.props.heroes)
 			}	      	    						
 	}	
 }
 
-function mapStateToProps(state) {	      	
+function mapStateToProps(state) {	     	
 	return {
 		heroes: state.heroReducer.heroes
 	}	
 }
 
-export default connect(mapStateToProps)(HeroFullDetail)
+function mapDispatchToProps (dispatch) {   	
+	return {
+		getMoveSpeedMore: (e) => dispatch(getMoveSpeedMore(e)),
+		getMoveSpeedLess: (e) => dispatch(getMoveSpeedLess(e))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeroFullDetail)
