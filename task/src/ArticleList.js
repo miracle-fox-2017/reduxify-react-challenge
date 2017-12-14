@@ -7,7 +7,7 @@ const ArticleList = (props) => {
       
     { props.articles.map((article, index) => {
         return (
-          <div className="col-sm-6 col-md-5">
+          <div className="col-sm-6 col-md-4">
             
             <ArticleItem
               id= {index}

@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "chance": "^1.0.12",
     "newsapi": "^2.1.0",
+    "node-fetch": "^1.7.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

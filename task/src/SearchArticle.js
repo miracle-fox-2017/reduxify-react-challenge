@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import fetch from 'node-fetch'
 import store, { AddArticles } from './store/'
 import ArticleList from './ArticleList'
 
@@ -10,19 +10,22 @@ class SearchArticle extends React.Component {
       articles: []
     }
   }
-  
+
+ async getFetch(){
+  const response = await fetch(`https://newsapi.org/v2/everything?q=${this.props.match.params.keyword}&apiKey=7c22194db6574183a086c357016e6e6f`)
+  const data = await response.json()
+  data.articles
+  }
+
   componentWillMount() {
-    console.log(this.props.match.params.keyword)
-    axios.get(`https://newsapi.org/v2/everything?q=${this.props.match.params.keyword}&apiKey=7c22194db6574183a086c357016e6e6f`)
-    .then(({data}) => {
+    fetch(`https://newsapi.org/v2/everything?q=${this.props.match.params.keyword}&apiKey=7c22194db6574183a086c357016e6e6f`)
+    .then(res => {
+      return res.json()
+    }).then(({articles}) => {
       this.setState({
-        articles: data.articles
+        articles: articles
       })
-      console.log(this.state.article)
     })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
 
   render () {
@@ -32,6 +35,8 @@ class SearchArticle extends React.Component {
       </div>
     )
   }
+
+  
 }
 
 export default SearchArticle

@@ -30,9 +30,11 @@ class Navbar extends React.Component {
             <Link class="nav-item nav-link" to="/articlesReact">ArticlesReact</Link>
           </div>
         </div>
-        <div>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search"  name="keyword" onChange={this.onChangeKey}/>
-          <Link class="btn btn-outline-success my-2 my-sm-0" to={url}>Search</Link>
+        <div class="navbar navbar-light bg-light">
+          <form class="form-inline">
+            <input class="form-control" type="search" placeholder="Search"  name="keyword" onChange={this.onChangeKey}/>
+            <Link class="btn btn-outline-success my-2 my-sm-0" to={url}>Search</Link>
+          </form>
         </div>
         <hr/>
       </nav>

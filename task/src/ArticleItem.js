@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const ArticleItem = (props) => {
   return (
-      <div>
+      <div class="p-2">
         <div className="card">
         <img src={props.urlToImage} alt="..." className="img-thumbnail" />
           <div className="card-body">

@@ -11,7 +11,7 @@ class ArticlesListReact extends React.Component {
       <div className="row">
         {this.props.articles.map( (article, index) => {
           return (
-            <div className="col-sm-6 col-md-5">
+            <div className="col-sm-6 col-md-4">
               <div className="card">
                 <img src={article.urlToImage} alt="..." className="img-thumbnail" />
                 <div className="card-body">
