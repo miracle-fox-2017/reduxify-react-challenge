@@ -23,9 +23,6 @@ class App extends Component {
       collectionId: dataFromChild
     })
   }
-  componentDidMount = () => {
-    this.getCollectionList
-  }
   render() {
     return (
       <div className="App">
