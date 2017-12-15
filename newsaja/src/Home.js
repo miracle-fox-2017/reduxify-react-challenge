@@ -1,46 +1,18 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import Newslist from './Newslist'
-import store from './store'
-import {getArticles} from './actions'
-const newsApi = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=5981474fde55432a9656bea68c9267bd'
+import React, { Component } from 'react';
+
+//import komponen-komponennya
 
 class Home extends Component {
-  constructor () {
-    super()
-    this.state = {
-      articles: []
-    }
-
-    store.subscribe(()=> {
-      this.setState({
-        articles: store.getState()
-      })
-    })
-  }
-
-  componentDidMount() {
-    axios.get(newsApi)
-         .then(({data}) => {
-           store.dispatch(getArticles(data.articles))
-         })
-         .catch((err) => {
-           console.log(err)
-         })
-  }
-
   render() {
-		return(
-			<div>
-		     	{ this.state.articles.map(((article,index) => {
-			        return (
-			          <Newslist article={article} key={index}/>
-			        )
-		    	  }))
-		     	}
-		    </div>
-		)
-	}
+    return (
+      <div className="jumbotron">
+        <h1 className="display-3">Welcome to News AJA</h1>
+        <p className="lead">Ini adalah web yang berisi highligth berita-berita politik dan teknologi berbahasa inggris langsung dari BBC dan Techrunch</p>
+        <hr className="my-4" />
+        <p>Berita ini didapat melalui news API</p>
+      </div>
+    );
+  }
 }
 
-export default Home;
+export default Home
